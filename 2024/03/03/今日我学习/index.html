@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>三个新发现的api/或者能够称为面试题吗？ | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1- symbol symbol 是一种基本数据类型;每个从 Symbol() 返回的 symbol 值都是唯一的。一个 symbol 值能作为对象属性的标识符 12Symbol(&quot;foo&quot;) &#x3D;&#x3D;&#x3D; Symbol(&quot;foo&quot;); &#x2F;&#x2F; false 但是：Symbol.for(key) 方法会根据给定的键 key，来从运行时的 symbol 注册表中找到对应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三个新发现的api&#x2F;或者能够称为面试题吗？">
+<meta property="og:url" content="http://www.wenchangstreet.com/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1- symbol symbol 是一种基本数据类型;每个从 Symbol() 返回的 symbol 值都是唯一的。一个 symbol 值能作为对象属性的标识符 12Symbol(&quot;foo&quot;) &#x3D;&#x3D;&#x3D; Symbol(&quot;foo&quot;); &#x2F;&#x2F; false 但是：Symbol.for(key) 方法会根据给定的键 key，来从运行时的 symbol 注册表中找到对应">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-03T14:51:02.331Z">
+<meta property="article:modified_time" content="2024-03-03T14:51:02.331Z">
+<meta property="article:author" content="yuzhongtao">
+<meta property="article:tag" content="blog,article,backend,frontend">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">yuzhongtao</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.wenchangstreet.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-今日我学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-03T14:51:02.331Z" itemprop="datePublished">2024-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      三个新发现的api/或者能够称为面试题吗？
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>1- symbol</p>
+<p>symbol 是一种基本数据类型;每个从 Symbol() 返回的 symbol 值都是唯一的。一个 symbol 值能作为对象属性的标识符</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Symbol</span>(<span class="string">&quot;foo&quot;</span>) === <span class="title class_">Symbol</span>(<span class="string">&quot;foo&quot;</span>); <span class="comment">// false</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>但是：Symbol.for(key) 方法会根据给定的键 key，来从运行时的 symbol 注册表中找到对应的 symbol，如果找到了，则返回它，否则，新建一个与该键关联的 symbol，并放入全局 symbol 注册表中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Symbol</span>.<span class="title function_">for</span>(key);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&quot;bar&quot;</span>) === <span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&quot;bar&quot;</span>); <span class="comment">// true，证明了上面说的</span></span><br><span class="line"><span class="title class_">Symbol</span>(<span class="string">&quot;bar&quot;</span>) === <span class="title class_">Symbol</span>(<span class="string">&quot;bar&quot;</span>); <span class="comment">// false，Symbol() 函数每次都会返回新的一个 symbol</span></span><br></pre></td></tr></table></figure>
+
+
+<p>2- flex 的 对应的属性，看到过对应的面试题<br>-	flex-basic: CSS 属性 flex-basis 指定了 flex 元素在主轴方向上的初始大小。如果不使用 box-sizing 改变盒模型的话，那么这个属性就决定了 flex 元素的内容盒（content-box）的尺寸。<br>注意： 当一个元素同时被设置了 flex-basis (除值为 auto 外) 和 width (或者在 flex-direction: column 情况下设置了height) , flex-basis 具有更高的优先级。<br>-	flex-direction: 布局方向<br>-	flex-wrap: 是否换行<br>-	flex-shrink: 收缩规则，flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。<br>-	flex-grow:  flex 项 主尺寸 的 flex 增长系数。 简而言之，占据几份</p>
+<ul>
+<li><pre><code>flex-flow:  属性是 flex-direction 和 flex-wrap 的简写。
+</code></pre>
+</li>
+</ul>
+<p>3- 关于空闲切片时间函数requestIdleCallback</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span><br><span class="line">	&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">		function sleep(duration, t1) &#123;</span><br><span class="line">            for (let t = Date.now(); Date.now() - t &lt;= duration;) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            console.log(Date.now() - t1)</span><br><span class="line">        &#125;</span><br><span class="line">        const works = [</span><br><span class="line">            () =&gt; &#123;</span><br><span class="line">                const t1 = Date.now()</span><br><span class="line">                console.log(&quot;第一个任务开始&quot;)</span><br><span class="line">                sleep(7000, t1)</span><br><span class="line">                console.log(&quot;第一个任务结束&quot;)</span><br><span class="line">            &#125;,</span><br><span class="line">            () =&gt; &#123;</span><br><span class="line">                const t1 = Date.now()</span><br><span class="line">                console.log(&quot;第2个任务开始&quot;)</span><br><span class="line">                sleep(7000, t1)</span><br><span class="line">                console.log(&quot;第2个任务结束&quot;)</span><br><span class="line">            &#125;,</span><br><span class="line">            () =&gt; &#123;</span><br><span class="line">                const t1 = Date.now()</span><br><span class="line">                console.log(&quot;第3个任务开始&quot;)</span><br><span class="line">                sleep(7000, t1)</span><br><span class="line">                console.log(&quot;第3个任务结束&quot;)</span><br><span class="line">                console.log(Date.now() - aa)</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">        // 情况1 : 利用空闲时间渲染dom，第一个任务结束后，会执行setTimeout</span><br><span class="line">        // 执行完setTimeout之后，会放到下一帧进行熏染，也就是第2个任务结束之后</span><br><span class="line">        requestIdleCallback(workLoop)</span><br><span class="line">        function workLoop(deadline) &#123;</span><br><span class="line">        	while(deadline.timeRemaining() &gt; 1 &amp;&amp; works.length &gt; 0) &#123;</span><br><span class="line">    			performUnitOfWork()</span><br><span class="line">			&#125;</span><br><span class="line">			if (works.length &gt; 0) &#123;</span><br><span class="line">			    console.log(`只剩下$&#123;deadline.timeRemaining()&#125;，时间片不够了，等待浏览器下次渲染的时候调用`)</span><br><span class="line">				requestIdleCallback(workLoop)</span><br><span class="line">			&#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 情况2: 会所有任务执行完毕进行熏染</span><br><span class="line">        function workLoop() &#123;</span><br><span class="line">        	while(works.length &gt; 0) &#123;</span><br><span class="line">                performUnitOfWork()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        workLoop()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        function performUnitOfWork() &#123;</span><br><span class="line">            let work = works.shift() // 取出任务数组之中的第一个任务</span><br><span class="line">            work()</span><br><span class="line">        &#125;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            console.log(&quot;11111&quot;)</span><br><span class="line">            app.innerHTML = &quot;aaaaaa&quot;</span><br><span class="line">            console.log(&quot;22222&quot;)</span><br><span class="line">        &#125;, 3000)</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/" data-id="cltbmrok40001ows8gkacbaqy" data-title="三个新发现的api/或者能够称为面试题吗？" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">根据大模型的api流式接口进行请求返回</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/">三个新发现的api/或者能够称为面试题吗？</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/">根据大模型的api流式接口进行请求返回</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/">关于hexo建站之后的图片显示问题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/">super-vue-seamless-scroll</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 yuzhongtao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
