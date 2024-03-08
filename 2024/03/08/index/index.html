@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>几个知识点 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="三个知识点：options预检请求，更换镜像地址，修改git-log options预检请求什么时候会发送预检请求？一句话：在跨域&amp;非简单请求的条件下会发送预检请求  首先由于浏览器的同源策略，在不跨域的情况下是不会发送options请求的 简单请求和非简单请求：可以理解为到底是否要对后台的数据做操作，最简单的get请求是通常都是单纯的读取数据，不涉及任何操作，所以是不会发送options">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几个知识点">
+<meta property="og:url" content="http://www.wenchangstreet.com/2024/03/08/index/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="三个知识点：options预检请求，更换镜像地址，修改git-log options预检请求什么时候会发送预检请求？一句话：在跨域&amp;非简单请求的条件下会发送预检请求  首先由于浏览器的同源策略，在不跨域的情况下是不会发送options请求的 简单请求和非简单请求：可以理解为到底是否要对后台的数据做操作，最简单的get请求是通常都是单纯的读取数据，不涉及任何操作，所以是不会发送options">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.wenchangstreet.com/2024/03/08/index/image-20240308090627886.png">
+<meta property="article:published_time" content="2024-03-08T01:21:53.865Z">
+<meta property="article:modified_time" content="2024-03-08T01:21:53.864Z">
+<meta property="article:author" content="yuzhongtao">
+<meta property="article:tag" content="blog,article,backend,frontend">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wenchangstreet.com/2024/03/08/index/image-20240308090627886.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">yuzhongtao</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.wenchangstreet.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-index" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/08/index/" class="article-date">
+  <time class="dt-published" datetime="2024-03-08T01:21:53.865Z" itemprop="datePublished">2024-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      几个知识点
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="三个知识点：options预检请求，更换镜像地址，修改git-log"><a href="#三个知识点：options预检请求，更换镜像地址，修改git-log" class="headerlink" title="三个知识点：options预检请求，更换镜像地址，修改git-log"></a>三个知识点：options预检请求，更换镜像地址，修改git-log</h2><ul>
+<li><h3 id="options预检请求"><a href="#options预检请求" class="headerlink" title="options预检请求"></a>options预检请求</h3><p>什么时候会发送预检请求？一句话：<strong>在跨域&amp;非简单请求的条件下会发送预检请求</strong></p>
+<ul>
+<li>首先由于浏览器的同源策略，在不跨域的情况下是不会发送options请求的</li>
+<li>简单请求和非简单请求：可以理解为到底是否要对后台的数据做操作，最简单的get请求是通常都是单纯的读取数据，不涉及任何操作，所以是不会发送options请求</li>
+<li>简单请求需要满足以下的条件<ul>
+<li>只使用以下HTTP方法之一：GET、HEAD或POST。</li>
+<li>只使用以下HTTP头部：Accept、Accept-Language、Content-Language、Content-Type。</li>
+<li>Content-Type的值仅限于：application&#x2F;x-www-form-urlencoded、multipart&#x2F;form-data或text&#x2F;plain。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="更换镜像地址"><a href="#更换镜像地址" class="headerlink" title="更换镜像地址"></a>更换镜像地址</h3><p>原有的淘宝镜像已经是不再进行dns的解析了，在阿里云的官方镜像站里面已经给了说明，经过我的测试使用https也可以，我直接用的下面的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry <span class="attr">https</span>:<span class="comment">//registry.npmmirror.com</span></span><br><span class="line">npm chache clean --force 强制清除一下缓存这样子感觉爽一点</span><br></pre></td></tr></table></figure></li>
+</ul>
+<img src="/2024/03/08/index/image-20240308090627886.png" class="" title="image-20240308090627886">
+
+
+
+<ul>
+<li><h3 id="修改git-log"><a href="#修改git-log" class="headerlink" title="修改git-log"></a>修改git-log</h3><p>在进行仓库提交代码的时候，现在大多数项目都配置了husky这个东西，如果里面单纯配置prettier还是，要是配置了eslint等，每次commit都是触发，像我的开发维护的项目就会爆出特别多的eslint的错误，真的不想改，我进行了两次操作，先将sh脚本文件之中的eslint等配置注释掉，然后提交，然后在解开注释，再次提交，这样在log之中就有两次的提交记录，合并代码的时候容易被leader看到不太好</p>
+<ul>
+<li><p>原有方式：git rebase -i HEAD^3	靠，这个命令搞得我特别乱，不推荐</p>
+</li>
+<li><p>新方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">如果你想和最近的两次</span><br><span class="line">git log --oneline 先找倒数第二个提交的hash</span><br><span class="line"></span><br><span class="line">git reset --soft xxx  退回这个版本，但是暂存区是保有变化的，就是说项目没有任何改动</span><br><span class="line">git commit --amend 完事</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/03/08/index/" data-id="clthz1oap0000yzs87xqtg5av" data-title="几个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">两道算法题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/08/index/">几个知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/">两道算法题</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/">三个新发现的api/或者能够称为面试题吗？</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/">根据大模型的api流式接口进行请求返回</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/">关于hexo建站之后的图片显示问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 yuzhongtao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
