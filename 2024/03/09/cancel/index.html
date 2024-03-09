@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>归档: 2024/3 | Hexo</title>
+  <title>关于取消请求和react native的环境配置的两个知识点 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="yuzhongtao apple blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://www.wenchangstreet.com/archives/2024/03/index.html">
+  <meta name="description" content="取消请求目前普遍使用的是axios库，其包含了一个属性cancelToken,在0.22版本之前是可以使用该属性进行取消请求的 但是从0.22版本之后改为了使用controlAbort,该方法在mdn上面有详细的解释，这里不再过多的说明 react native的环境配置首先这个环境是真的不好配置，目前我只配置的ios的开发环境，坑爹的要死，这里只说两点1- mac内置的ruby版本的2的版本，需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于取消请求和react native的环境配置的两个知识点">
+<meta property="og:url" content="http://www.wenchangstreet.com/2024/03/09/cancel/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="yuzhongtao apple blog">
+<meta property="og:description" content="取消请求目前普遍使用的是axios库，其包含了一个属性cancelToken,在0.22版本之前是可以使用该属性进行取消请求的 但是从0.22版本之后改为了使用controlAbort,该方法在mdn上面有详细的解释，这里不再过多的说明 react native的环境配置首先这个环境是真的不好配置，目前我只配置的ios的开发环境，坑爹的要死，这里只说两点1- mac内置的ruby版本的2的版本，需">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-09T09:51:06.359Z">
+<meta property="article:modified_time" content="2024-03-09T09:51:06.359Z">
 <meta property="article:author" content="yuzhongtao">
 <meta property="article:tag" content="blog,article,backend,frontend">
 <meta name="twitter:card" content="summary">
@@ -74,96 +76,55 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/03/09/cancel/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-03-09T09:51:06.359Z" itemprop="datePublished">3月 9</time>
+        <section id="main"><article id="post-cancel" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/09/cancel/" class="article-date">
+  <time class="dt-published" datetime="2024-03-09T09:51:06.359Z" itemprop="datePublished">2024-03-09</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/03/09/cancel/">关于取消请求和react native的环境配置的两个知识点</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      关于取消请求和react native的环境配置的两个知识点
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/03/08/index/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-03-08T01:21:53.865Z" itemprop="datePublished">3月 8</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/03/08/index/">几个知识点</a>
-    </h1>
-  
+        <h2 id="取消请求"><a href="#取消请求" class="headerlink" title="取消请求"></a>取消请求</h2><p>目前普遍使用的是axios库，其包含了一个属性cancelToken,在0.22版本之前是可以使用该属性进行取消请求的</p>
+<p>但是从0.22版本之后改为了使用controlAbort,该方法在mdn上面有详细的解释，这里不再过多的说明</p>
+<h2 id="react-native的环境配置"><a href="#react-native的环境配置" class="headerlink" title="react native的环境配置"></a>react native的环境配置</h2><p>首先这个环境是真的不好配置，目前我只配置的ios的开发环境，坑爹的要死，这里只说两点<br>1- mac内置的ruby版本的2的版本，需要使用最新的3版本才可以<br>2- 在下载homebrew的时候会各种卡顿，大家可以搜索中科大源或者清华源进行配置<br>3- 在react native初始化之后，需要进入ios包并且使用pod install命令进行安装cocoapods包</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-03-06T02:06:32.729Z" itemprop="datePublished">3月 6</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/">两道算法题</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-03-03T14:51:02.331Z" itemprop="datePublished">3月 3</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/03/09/cancel/" data-id="cltjwohul0000mws8eyfghhnm" data-title="关于取消请求和react native的环境配置的两个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/">三个新发现的api/或者能够称为面试题吗？</a>
-    </h1>
-  
-
-    </header>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/08/index/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">几个知识点</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
