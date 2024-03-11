@@ -76,6 +76,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-hexo" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/11/hexo/" class="article-date">
+  <time class="dt-published" datetime="2024-03-11T01:02:52.156Z" itemprop="datePublished">2024-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>关于fetch的请求的默认的超时时间是多少？<ul>
+<li>默认情况下，<code>fetch()</code>请求在浏览器指示的时间超时。在 Chrome 中，网络请求超时为 300 秒，而在 Firefox 中为 90 秒。</li>
+<li>这个题我在mdn上找fetch的解释说明，我都没找到啊！！！</li>
+</ul>
+</li>
+<li>手写题</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">request</span>(<span class="params">url, body, succ, error, maxCount = <span class="number">5</span></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">fetch</span>(url, body)</span><br><span class="line">     .<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span> <span class="title function_">succ</span>(res))</span><br><span class="line">     .<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">         <span class="keyword">if</span> (maxCount &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="title function_">error</span>(<span class="string">&#x27;请求超时&#x27;</span>);</span><br><span class="line">         <span class="keyword">return</span> <span class="title function_">request</span>(url, body, succ, error, --maxCount);</span><br><span class="line">     &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 调用请求函数</span></span><br><span class="line"> <span class="title function_">request</span>(<span class="string">&#x27;https://java.some.com/pc/reqCount&#x27;</span>,&#123; <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>, <span class="attr">headers</span>: &#123;&#125;&#125;,</span><br><span class="line"> 	<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      	<span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="property">data</span>);</span><br><span class="line">  	&#125;,</span><br><span class="line">  	<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(err));</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/03/11/hexo/" data-id="cltm8ouql0002hes8d75j7ers" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-another" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/10/another/" class="article-date">
@@ -113,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/10/another/" data-id="cltllzycv0000i1s83mhi9pgj" data-title="关于面试" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/10/another/" data-id="cltm8ouqb0000hes814u1au15" data-title="关于面试" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -154,7 +192,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/09/cancel/" data-id="cltllzyd10001i1s88rrlcnr2" data-title="关于取消请求和react native的环境配置的两个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/09/cancel/" data-id="cltm8ouqh0001hes8c7d67342" data-title="关于取消请求和react native的环境配置的两个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -222,7 +260,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/08/index/" data-id="cltllzyd50002i1s8ahjwfo5c" data-title="几个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/08/index/" data-id="cltm8ouqp0003hes8dcw6gdxa" data-title="几个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -265,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/" data-id="cltllzydb0004i1s8htregkrv" data-title="两道算法题" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/" data-id="cltm8ouqs0005hes88hse3tt1" data-title="两道算法题" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -318,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/" data-id="cltllzydc0005i1s89djta6yq" data-title="三个新发现的api/或者能够称为面试题吗？" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/" data-id="cltm8ouqt0006hes86lhqdmmk" data-title="三个新发现的api/或者能够称为面试题吗？" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -361,7 +399,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/" data-id="cltllzydd0006i1s8e3mxdwab" data-title="根据大模型的api流式接口进行请求返回" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/" data-id="cltm8ouqu0007hes865lt36ti" data-title="根据大模型的api流式接口进行请求返回" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -403,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/" data-id="cltllzyd90003i1s8gkp01zvk" data-title="关于hexo建站之后的图片显示问题" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/" data-id="cltm8ouqr0004hes88phfgwoy" data-title="关于hexo建站之后的图片显示问题" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -480,7 +518,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/" data-id="cltllzydh0007i1s80ro9daw5" data-title="super-vue-seamless-scroll" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/" data-id="cltm8ouqv0008hes8a3l3e2m6" data-title="super-vue-seamless-scroll" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -523,6 +561,10 @@
       <ul>
         
           <li>
+            <a href="/2024/03/11/hexo/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/10/another/">关于面试</a>
           </li>
         
@@ -536,10 +578,6 @@
         
           <li>
             <a href="/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/">两道算法题</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/">三个新发现的api/或者能够称为面试题吗？</a>
           </li>
         
       </ul>
