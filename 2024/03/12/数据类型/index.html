@@ -4,22 +4,20 @@
   <meta charset="utf-8">
   
   
-  <title>关于hexo建站之后的图片显示问题 | Hexo:yzt238910@163.com</title>
+  <title>关于js之中的数据类型的转换的原则 | Hexo:yzt238910@163.com</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="第二篇文章，images图片终于显示了 关于hexo的图片显示问题，官网推荐的hexo-asset-image不好用啊，我在网上查找到这个包的源代码，发现还是不能用，而且我测试无法调试，没什么输出 终于在晚上查到一个bao：hexo-image-link 安装完这个需要将原来的hexo-asset-image卸载掉才可以">
+  <meta name="description" content="原始 -》 数字 调用Number() true 1 false 0 null 0 undefined NaN NaN NaN string 空字符串（含空白字符\t\r\n）：0 去掉引号：不是数字就是NaN 存在空格的话，会去掉首尾的空格来转换    所有 -》 bool 调用Boolean() 0 false undefined false null false NaN false 空字符串">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于hexo建站之后的图片显示问题">
-<meta property="og:url" content="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/index.html">
+<meta property="og:title" content="关于js之中的数据类型的转换的原则">
+<meta property="og:url" content="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Hexo:yzt238910@163.com">
-<meta property="og:description" content="第二篇文章，images图片终于显示了 关于hexo的图片显示问题，官网推荐的hexo-asset-image不好用啊，我在网上查找到这个包的源代码，发现还是不能用，而且我测试无法调试，没什么输出 终于在晚上查到一个bao：hexo-image-link 安装完这个需要将原来的hexo-asset-image卸载掉才可以">
+<meta property="og:description" content="原始 -》 数字 调用Number() true 1 false 0 null 0 undefined NaN NaN NaN string 空字符串（含空白字符\t\r\n）：0 去掉引号：不是数字就是NaN 存在空格的话，会去掉首尾的空格来转换    所有 -》 bool 调用Boolean() 0 false undefined false null false NaN false 空字符串">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/01.png">
-<meta property="article:published_time" content="2024-02-28T15:42:17.927Z">
-<meta property="article:modified_time" content="2024-02-28T15:42:17.927Z">
+<meta property="article:published_time" content="2024-03-12T01:00:03.311Z">
+<meta property="article:modified_time" content="2024-03-12T01:00:03.311Z">
 <meta property="article:author" content="yuzhongtao">
 <meta property="article:tag" content="blog,article,backend,frontend">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/01.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo:yzt238910@163.com" type="application/atom+xml">
   
@@ -78,10 +76,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-一个笑话" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-数据类型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/" class="article-date">
-  <time class="dt-published" datetime="2024-02-28T15:42:17.927Z" itemprop="datePublished">2024-02-28</time>
+    <a href="/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="article-date">
+  <time class="dt-published" datetime="2024-03-12T01:00:03.311Z" itemprop="datePublished">2024-03-12</time>
 </a>
     
   </div>
@@ -92,7 +90,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      关于hexo建站之后的图片显示问题
+      关于js之中的数据类型的转换的原则
     </h1>
   
 
@@ -100,15 +98,44 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>第二篇文章，images图片终于显示了</p>
-<p>关于hexo的图片显示问题，官网推荐的hexo-asset-image不好用啊，我在网上查找到这个包的源代码，发现还是不能用，而且我测试无法调试，没什么输出</p>
-<p>终于在晚上查到一个bao：hexo-image-link</p>
-<p>安装完这个需要将原来的hexo-asset-image卸载掉才可以</p>
-<img src="/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/01.png" class="" title="apple1">
+        <h5 id="原始-》-数字-调用Number"><a href="#原始-》-数字-调用Number" class="headerlink" title="原始 -》 数字 调用Number()"></a>原始 -》 数字 调用Number()</h5><ul>
+<li>true 1</li>
+<li>false 0</li>
+<li>null 0</li>
+<li>undefined NaN</li>
+<li>NaN NaN</li>
+<li>string<ul>
+<li>空字符串（含空白字符\t\r\n）：0</li>
+<li>去掉引号：不是数字就是NaN</li>
+<li>存在空格的话，会去掉首尾的空格来转换</li>
+</ul>
+</li>
+</ul>
+<h5 id="所有-》-bool-调用Boolean"><a href="#所有-》-bool-调用Boolean" class="headerlink" title="所有 -》 bool 调用Boolean()"></a>所有 -》 bool 调用Boolean()</h5><ul>
+<li>0 false</li>
+<li>undefined false</li>
+<li>null false</li>
+<li>NaN false</li>
+<li>空字符串 false 只有空字符串是false</li>
+<li>其他都是true</li>
+</ul>
+<h5 id="原始-》-字符串-调用String"><a href="#原始-》-字符串-调用String" class="headerlink" title="原始 -》 字符串 调用String()"></a>原始 -》 字符串 调用String()</h5><ul>
+<li>null “null”</li>
+<li>NaN “NaN “</li>
+<li>undefined “undefined”</li>
+<li>number “数字”</li>
+<li>true “true”</li>
+<li>false “false”</li>
+</ul>
+<p>对象 -》 原始</p>
+<ul>
+<li>调用valueOf 得到的是对象的话，就会调用toString()，如果toString得到的还是对象的话，就会报错</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/" data-id="cltno14ju00047qs82ck61tw5" data-title="关于hexo建站之后的图片显示问题" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="cltno14kk00097qs8a7wdfv9u" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -118,19 +145,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          根据大模型的api流式接口进行请求返回
-        
-      </div>
-    </a>
   
-  
-    <a href="/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2024/03/11/hexo/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">super-vue-seamless-scroll</div>
+      <div class="article-nav-title"></div>
     </a>
   
 </nav>

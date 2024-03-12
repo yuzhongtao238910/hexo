@@ -76,6 +76,77 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-数据类型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="article-date">
+  <time class="dt-published" datetime="2024-03-12T01:00:03.311Z" itemprop="datePublished">2024-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">关于js之中的数据类型的转换的原则</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h5 id="原始-》-数字-调用Number"><a href="#原始-》-数字-调用Number" class="headerlink" title="原始 -》 数字 调用Number()"></a>原始 -》 数字 调用Number()</h5><ul>
+<li>true 1</li>
+<li>false 0</li>
+<li>null 0</li>
+<li>undefined NaN</li>
+<li>NaN NaN</li>
+<li>string<ul>
+<li>空字符串（含空白字符\t\r\n）：0</li>
+<li>去掉引号：不是数字就是NaN</li>
+<li>存在空格的话，会去掉首尾的空格来转换</li>
+</ul>
+</li>
+</ul>
+<h5 id="所有-》-bool-调用Boolean"><a href="#所有-》-bool-调用Boolean" class="headerlink" title="所有 -》 bool 调用Boolean()"></a>所有 -》 bool 调用Boolean()</h5><ul>
+<li>0 false</li>
+<li>undefined false</li>
+<li>null false</li>
+<li>NaN false</li>
+<li>空字符串 false 只有空字符串是false</li>
+<li>其他都是true</li>
+</ul>
+<h5 id="原始-》-字符串-调用String"><a href="#原始-》-字符串-调用String" class="headerlink" title="原始 -》 字符串 调用String()"></a>原始 -》 字符串 调用String()</h5><ul>
+<li>null “null”</li>
+<li>NaN “NaN “</li>
+<li>undefined “undefined”</li>
+<li>number “数字”</li>
+<li>true “true”</li>
+<li>false “false”</li>
+</ul>
+<p>对象 -》 原始</p>
+<ul>
+<li>调用valueOf 得到的是对象的话，就会调用toString()，如果toString得到的还是对象的话，就会报错</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="cltno14kk00097qs8a7wdfv9u" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-hexo" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/11/hexo/" class="article-date">
@@ -102,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/11/hexo/" data-id="cltm8ouql0002hes8d75j7ers" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/11/hexo/" data-id="cltno14jr00027qs83jka0pe3" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -151,7 +222,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/10/another/" data-id="cltm8ouqb0000hes814u1au15" data-title="关于面试" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/10/another/" data-id="cltno14jk00007qs815dncqdp" data-title="关于面试" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -192,7 +263,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/09/cancel/" data-id="cltm8ouqh0001hes8c7d67342" data-title="关于取消请求和react native的环境配置的两个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/09/cancel/" data-id="cltno14jp00017qs8els64wie" data-title="关于取消请求和react native的环境配置的两个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -260,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/08/index/" data-id="cltm8ouqp0003hes8dcw6gdxa" data-title="几个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/08/index/" data-id="cltno14jt00037qs89s64095x" data-title="几个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -303,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/" data-id="cltm8ouqs0005hes88hse3tt1" data-title="两道算法题" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/" data-id="cltno14jv00057qs8934x76tj" data-title="两道算法题" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -356,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/" data-id="cltm8ouqt0006hes86lhqdmmk" data-title="三个新发现的api/或者能够称为面试题吗？" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/" data-id="cltno14jw00067qs8fyc29zju" data-title="三个新发现的api/或者能够称为面试题吗？" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -399,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/" data-id="cltm8ouqu0007hes865lt36ti" data-title="根据大模型的api流式接口进行请求返回" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/" data-id="cltno14jx00077qs8g1jke40s" data-title="根据大模型的api流式接口进行请求返回" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -441,7 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/" data-id="cltm8ouqr0004hes88phfgwoy" data-title="关于hexo建站之后的图片显示问题" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/" data-id="cltno14ju00047qs82ck61tw5" data-title="关于hexo建站之后的图片显示问题" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -518,7 +589,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/" data-id="cltm8ouqv0008hes8a3l3e2m6" data-title="super-vue-seamless-scroll" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/" data-id="cltno14jy00087qs8c1qf1ccr" data-title="super-vue-seamless-scroll" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -561,6 +632,10 @@
       <ul>
         
           <li>
+            <a href="/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">关于js之中的数据类型的转换的原则</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/11/hexo/">(no title)</a>
           </li>
         
@@ -574,10 +649,6 @@
         
           <li>
             <a href="/2024/03/08/index/">几个知识点</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/">两道算法题</a>
           </li>
         
       </ul>
