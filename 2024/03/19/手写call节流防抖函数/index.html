@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>手写call/节流/防抖函数 | Hexo:yzt238910@163.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="手写3个函数 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;	&lt;meta charset&#x3D;&quot;u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手写call&#x2F;节流&#x2F;防抖函数">
+<meta property="og:url" content="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="Hexo:yzt238910@163.com">
+<meta property="og:description" content="手写3个函数 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;	&lt;meta charset&#x3D;&quot;u">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-19T01:17:17.788Z">
+<meta property="article:modified_time" content="2024-03-19T01:17:17.788Z">
+<meta property="article:author" content="yuzhongtao">
+<meta property="article:tag" content="blog,article,backend,frontend">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo:yzt238910@163.com" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo:yzt238910@163.com</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">yuzhongtao</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.wenchangstreet.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-手写call节流防抖函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-19T01:17:17.788Z" itemprop="datePublished">2024-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      手写call/节流/防抖函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>手写3个函数</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&#x27;button1&#x27;</span>&gt;</span>按钮+1 -》防抖<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;button2&quot;</span>&gt;</span>按钮+1 -》节流<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">		<span class="comment">// 手写自己的call方法</span></span></span><br><span class="line"><span class="language-javascript">		<span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">myCall</span> = <span class="keyword">function</span>(<span class="params">obj, ...args</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">if</span> (obj === <span class="literal">null</span> || obj === <span class="literal">undefined</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">				obj = <span class="variable language_">window</span> || globalThis</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">			<span class="comment">// 防止重名</span></span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">const</span> symbol1 = <span class="title class_">Symbol</span>(<span class="string">&#x27;call&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">			obj[symbol1] = <span class="variable language_">this</span></span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">const</span> res = obj[symbol1](...args)</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">delete</span> obj[symbol1]</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span> res</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">const</span> person = &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">name</span>: <span class="string">&quot;apple&quot;</span></span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">function</span> <span class="title function_">aa</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>)</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">		aa.<span class="title function_">myCall</span>(person)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">		<span class="comment">//手写防抖函数 debounce</span></span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">const</span> button1 = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;#button1&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">		button1.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="title function_">fn1</span>())</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">function</span> <span class="title function_">fn1</span>(<span class="params">evt</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">let</span> timer = <span class="literal">null</span></span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">evt</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="keyword">if</span> (timer) <span class="built_in">clearTimeout</span>(timer)</span></span><br><span class="line"><span class="language-javascript">				timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">					<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;222222&quot;</span>, evt)</span></span><br><span class="line"><span class="language-javascript">				&#125;, <span class="number">1000</span>)</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">		<span class="comment">// 手写节流函数 throttle</span></span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">const</span> button2 = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;#button2&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">		button2.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="title function_">fn2</span>())</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">function</span> <span class="title function_">fn2</span>(<span class="params">evt</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="comment">// 如果要求1s内执行一次的话</span></span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">let</span> startTime = +<span class="keyword">new</span> <span class="title class_">Date</span>()</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">evt</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="keyword">const</span> interval = +<span class="keyword">new</span> <span class="title class_">Date</span>() - startTime</span></span><br><span class="line"><span class="language-javascript">				<span class="keyword">if</span> (interval &lt; <span class="number">1000</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">				&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">					startTime = +<span class="keyword">new</span> <span class="title class_">Date</span>()</span></span><br><span class="line"><span class="language-javascript">					<span class="comment">// 执行具体的逻辑</span></span></span><br><span class="line"><span class="language-javascript">					<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;2222&quot;</span>, evt)</span></span><br><span class="line"><span class="language-javascript">				&#125;</span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" data-id="cltxoq8900009c6s86k2xcx1c" data-title="手写call/节流/防抖函数" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/12/hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">两个面试题fetch的请求时间/重发请求</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/">手写call/节流/防抖函数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/12/hexo/">两个面试题fetch的请求时间/重发请求</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">关于js之中的数据类型的转换的原则</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/10/another/">关于面试</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/09/cancel/">关于取消请求和react native的环境配置的两个知识点</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 yuzhongtao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
