@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo:yzt238910@163.com</title>
+  <title>几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包 | Hexo:yzt238910@163.com</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="title:几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包单例模式自始至终只返回同一个对象 1234567891011121314151617181920212223242526272829303132333435363738394041&#x2F;&#x2F; 两种写法 使用自执行函数const Single &#x3D; (function() &#123;	let instance &#x3D; null	fun">
+  <meta name="description" content="单例模式自始至终只返回同一个对象 1234567891011121314151617181920212223242526272829303132333435363738394041&#x2F;&#x2F; 两种写法 使用自执行函数const Single &#x3D; (function() &#123;	let instance &#x3D; null	function User (name, age) &#123;		this.na">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo:yzt238910@163.com">
+<meta property="og:title" content="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包">
 <meta property="og:url" content="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Hexo:yzt238910@163.com">
-<meta property="og:description" content="title:几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包单例模式自始至终只返回同一个对象 1234567891011121314151617181920212223242526272829303132333435363738394041&#x2F;&#x2F; 两种写法 使用自执行函数const Single &#x3D; (function() &#123;	let instance &#x3D; null	fun">
+<meta property="og:description" content="单例模式自始至终只返回同一个对象 1234567891011121314151617181920212223242526272829303132333435363738394041&#x2F;&#x2F; 两种写法 使用自执行函数const Single &#x3D; (function() &#123;	let instance &#x3D; null	function User (name, age) &#123;		this.na">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-22T01:53:54.197Z">
-<meta property="article:modified_time" content="2024-03-22T01:53:54.197Z">
+<meta property="article:published_time" content="2024-03-22T01:55:49.100Z">
+<meta property="article:modified_time" content="2024-03-22T01:55:49.098Z">
 <meta property="article:author" content="yuzhongtao">
 <meta property="article:tag" content="blog,article,backend,frontend">
 <meta name="twitter:card" content="summary">
@@ -79,17 +79,26 @@
         <section id="main"><article id="post-设计模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time class="dt-published" datetime="2024-03-22T01:53:54.197Z" itemprop="datePublished">2024-03-22</time>
+  <time class="dt-published" datetime="2024-03-22T01:55:49.100Z" itemprop="datePublished">2024-03-22</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="title-几个设计模式：单例，观察者，发布订阅模式-vue3的mitt包"><a href="#title-几个设计模式：单例，观察者，发布订阅模式-vue3的mitt包" class="headerlink" title="title:几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包"></a>title:几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包</h2><h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>自始至终只返回同一个对象</p>
+        <h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>自始至终只返回同一个对象</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 两种写法 使用自执行函数</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Single</span> = (<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="keyword">let</span> instance = <span class="literal">null</span></span><br><span class="line">	<span class="keyword">function</span> <span class="title function_">User</span> (name, age) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!instance) &#123;</span><br><span class="line">			<span class="comment">// 创建实例</span></span><br><span class="line">			instance = <span class="keyword">new</span> <span class="title class_">User</span>(name, age)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> aa = <span class="title class_">Single</span>(<span class="string">&#x27;11&#x27;</span>, <span class="string">&#x27;22&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> bb = <span class="title class_">Single</span>(<span class="string">&#x27;dd&#x27;</span>, <span class="string">&#x27;44&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(aa === bb)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用类的写法</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Singler</span> &#123;</span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="title class_">Singler</span>.<span class="property">instance</span>) &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">			<span class="title class_">Singler</span>.<span class="property">instance</span> = <span class="variable language_">this</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="title function_">getInstance</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="title class_">Singler</span>.<span class="property">instance</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="title class_">Singler</span>.<span class="property">instance</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Singler</span>(name, age)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> yy = <span class="title class_">Singler</span>.<span class="title function_">getInstance</span>(<span class="string">&#x27;11&#x27;</span>, <span class="number">22</span>)</span><br><span class="line"><span class="keyword">const</span> kk = <span class="title class_">Singler</span>.<span class="title function_">getInstance</span>(<span class="string">&#x27;22&#x27;</span>, <span class="number">33</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(yy, kk, yy === kk)</span><br></pre></td></tr></table></figure>
 
 <h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 话说，proxy不就是观察者吗？在get之中捕获，在set之中发布</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这是一个简单的案例</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">PubSub</span> = &#123;</span><br><span class="line">	<span class="attr">list</span>: [],</span><br><span class="line">	<span class="title function_">publish</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">list</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="title function_">item</span>())</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="title function_">subscribe</span>(<span class="params">cb</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">list</span>.<span class="title function_">push</span>(cb)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testA</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;aa&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testB</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;bb&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">subscribe</span>(testA)</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">subscribe</span>(testB)</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">publish</span>()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -105,7 +114,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clu20cv6g000b4us8ck6r19h6" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clu20f763000bccs86kp22ecw" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -156,7 +165,7 @@
       <ul>
         
           <li>
-            <a href="/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">(no title)</a>
+            <a href="/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包</a>
           </li>
         
           <li>
