@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>实现简易的手写的promise | Hexo:yzt238910@163.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1- 实现简易的手写的promise1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162class MyPromise &#123;	constructor(executor) &#123;		this.state &#x3D; &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现简易的手写的promise">
+<meta property="og:url" content="http://www.wenchangstreet.com/2024/03/24/hand_promise/index.html">
+<meta property="og:site_name" content="Hexo:yzt238910@163.com">
+<meta property="og:description" content="1- 实现简易的手写的promise1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162class MyPromise &#123;	constructor(executor) &#123;		this.state &#x3D; &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-24T13:46:41.581Z">
+<meta property="article:modified_time" content="2024-03-24T13:46:41.581Z">
+<meta property="article:author" content="yuzhongtao">
+<meta property="article:tag" content="blog,article,backend,frontend">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo:yzt238910@163.com" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo:yzt238910@163.com</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">yuzhongtao</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.wenchangstreet.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-hand_promise" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/24/hand_promise/" class="article-date">
+  <time class="dt-published" datetime="2024-03-24T13:46:41.581Z" itemprop="datePublished">2024-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      实现简易的手写的promise
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1-实现简易的手写的promise"><a href="#1-实现简易的手写的promise" class="headerlink" title="1- 实现简易的手写的promise"></a>1- 实现简易的手写的promise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyPromise</span> &#123;</span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params">executor</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">state</span> = <span class="string">&#x27;pending&#x27;</span></span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">value</span> = <span class="literal">null</span></span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">error</span> = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">onResolvedList</span> = []</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">onRejectedList</span> = []</span><br><span class="line">		<span class="keyword">const</span> <span class="title function_">resolve</span> = (<span class="params">val</span>) =&gt; &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">				<span class="variable language_">this</span>.<span class="property">value</span> = val</span><br><span class="line">				<span class="variable language_">this</span>.<span class="property">state</span> = <span class="string">&#x27;fulfilled&#x27;</span></span><br><span class="line">				<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">onResolvedList</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="variable language_">this</span>.<span class="property">onResolvedList</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="title function_">item</span>())</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">const</span> <span class="title function_">reject</span> = (<span class="params">err</span>) =&gt; &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">				<span class="variable language_">this</span>.<span class="property">error</span> = error</span><br><span class="line">				<span class="variable language_">this</span>.<span class="property">state</span> = <span class="string">&#x27;rejected&#x27;</span></span><br><span class="line">				<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">onRejectedList</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="variable language_">this</span>.<span class="property">onRejectedList</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="title function_">item</span>())</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="title function_">executor</span>(resolve, reject)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="title function_">then</span>(<span class="params">onFulfilled, onRejected</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="string">&#x27;fulfilled&#x27;</span>) &#123;</span><br><span class="line">			<span class="title function_">onFulfilled</span>(<span class="variable language_">this</span>.<span class="property">value</span>)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="string">&#x27;rejected&#x27;</span>) &#123;</span><br><span class="line">			<span class="title function_">onRejected</span>(<span class="variable language_">this</span>.<span class="property">error</span>)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">onResolvedList</span>.<span class="title function_">push</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">				<span class="title function_">onFulfilled</span>(<span class="variable language_">this</span>.<span class="property">value</span>)</span><br><span class="line">			&#125;)</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">onRejectedList</span>.<span class="title function_">push</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">				<span class="title function_">onRejected</span>(<span class="variable language_">this</span>.<span class="property">error</span>)</span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pp = <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="comment">// 情况1- 直接进行resolve</span></span><br><span class="line">	<span class="title function_">resolve</span>(<span class="number">5667</span>)</span><br><span class="line">	<span class="comment">// 情况2- 异步的方案</span></span><br><span class="line">	<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">		<span class="title function_">resolve</span>(<span class="number">5667</span>)</span><br><span class="line">	&#125;, <span class="number">3000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">pp.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;&#125;, <span class="function"><span class="params">err</span> =&gt;</span> &#123;&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="实现静态方法Promise-all-的-手写"><a href="#实现静态方法Promise-all-的-手写" class="headerlink" title="实现静态方法Promise.all 的 手写"></a>实现静态方法Promise.all 的 手写</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// promises 是一个数组</span></span><br><span class="line"><span class="title class_">MyPromise</span>.<span class="property">all</span> = <span class="keyword">function</span>(<span class="params">promises</span>) &#123;</span><br><span class="line">	<span class="keyword">let</span> array = []</span><br><span class="line">	<span class="keyword">let</span> index = <span class="number">0</span></span><br><span class="line">	<span class="keyword">const</span> <span class="title function_">processPromise</span> = (<span class="params">id, res, resolve</span>) =&gt; &#123;</span><br><span class="line">		array[id] = res</span><br><span class="line">		index++</span><br><span class="line">		<span class="keyword">if</span> (index === promises.<span class="property">length</span>) &#123;</span><br><span class="line">			<span class="title function_">resolve</span>(array)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">		promises.<span class="title function_">forEach</span>(<span class="function">(<span class="params">promise, id</span>) =&gt;</span> &#123;</span><br><span class="line">			promise.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">				<span class="title function_">processPromise</span>(id, res, resolve)</span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="clu5kp6m700021ds82hyw47fy" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/24/hand_promise/">实现简易的手写的promise</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/">手写call/节流/防抖函数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/12/hexo/">两个面试题fetch的请求时间/重发请求</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">关于js之中的数据类型的转换的原则</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 yuzhongtao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
