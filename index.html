@@ -79,17 +79,26 @@
     <article id="post-238910" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/25/238910/" class="article-date">
-  <time class="dt-published" datetime="2024-03-25T06:43:02.799Z" itemprop="datePublished">2024-03-25</time>
+  <time class="dt-published" datetime="2024-03-25T06:44:38.392Z" itemprop="datePublished">2024-03-25</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/25/238910/">模拟超时时间&amp;最大的请求次数</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="title-模拟超时时间-最大的请求次数"><a href="#title-模拟超时时间-最大的请求次数" class="headerlink" title="title:模拟超时时间&amp;最大的请求次数"></a>title:模拟超时时间&amp;最大的请求次数</h2><h3 id="模拟超时时间"><a href="#模拟超时时间" class="headerlink" title="模拟超时时间"></a>模拟超时时间</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">overTime</span>(<span class="params">url, time</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">let</span> timerId = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">reject</span>(<span class="string">&#x27;请求超时&#x27;</span>)</span><br><span class="line">		&#125;, time)</span><br><span class="line">		<span class="title function_">fetch</span>(url).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> res.<span class="title function_">json</span>())</span><br><span class="line">			.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">				<span class="built_in">clearTimeout</span>(timerId)</span><br><span class="line">				<span class="title function_">resolve</span>(res)</span><br><span class="line">			&#125;)</span><br><span class="line">			.<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">			<span class="built_in">clearTimeout</span>(timerId)</span><br><span class="line">			<span class="title function_">reject</span>(err)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="模拟超时时间"><a href="#模拟超时时间" class="headerlink" title="模拟超时时间"></a>模拟超时时间</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">overTime</span>(<span class="params">url, time</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">let</span> timerId = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">reject</span>(<span class="string">&#x27;请求超时&#x27;</span>)</span><br><span class="line">		&#125;, time)</span><br><span class="line">		<span class="title function_">fetch</span>(url).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> res.<span class="title function_">json</span>())</span><br><span class="line">			.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">				<span class="built_in">clearTimeout</span>(timerId)</span><br><span class="line">				<span class="title function_">resolve</span>(res)</span><br><span class="line">			&#125;)</span><br><span class="line">			.<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">			<span class="built_in">clearTimeout</span>(timerId)</span><br><span class="line">			<span class="title function_">reject</span>(err)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -105,7 +114,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="clu6l0g5a0000s0s8fe17cx4w" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="clu6l26qn000033s801gl1n94" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -153,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="clu6l0g5j0003s0s8apv22sjp" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="clu6l26qv000333s86zl73d1d" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -203,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clu6l0g6b000ds0s83ib328gm" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clu6l26r4000d33s8flrq3ek7" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -244,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" data-id="clu6l0g68000bs0s8fb8zdhn3" data-title="手写call/节流/防抖函数" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" data-id="clu6l26r3000b33s8bz2m8xoj" data-title="手写call/节流/防抖函数" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -292,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/12/hexo/" data-id="clu6l0g5k0004s0s8hpvwc9rz" data-title="两个面试题fetch的请求时间/重发请求" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/12/hexo/" data-id="clu6l26qw000433s88kamblhr" data-title="两个面试题fetch的请求时间/重发请求" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -363,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="clu6l0g69000cs0s83ej19vk2" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="clu6l26r3000c33s8cibj8smy" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -412,7 +421,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/10/another/" data-id="clu6l0g5g0001s0s81l0l4jl8" data-title="关于面试" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/10/another/" data-id="clu6l26qs000133s85gpq8vq1" data-title="关于面试" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -453,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/09/cancel/" data-id="clu6l0g5i0002s0s8dy3p3pcm" data-title="关于取消请求和react native的环境配置的两个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/09/cancel/" data-id="clu6l26qu000233s84zvf10a5" data-title="关于取消请求和react native的环境配置的两个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -521,7 +530,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/08/index/" data-id="clu6l0g5x0005s0s8dac11y04" data-title="几个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/08/index/" data-id="clu6l26qx000533s83l527v4o" data-title="几个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -564,7 +573,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/" data-id="clu6l0g640007s0s8ghaj7pci" data-title="两道算法题" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/" data-id="clu6l26qz000733s80wju4l4f" data-title="两道算法题" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -612,7 +621,7 @@
       <ul>
         
           <li>
-            <a href="/2024/03/25/238910/">(no title)</a>
+            <a href="/2024/03/25/238910/">模拟超时时间&amp;最大的请求次数</a>
           </li>
         
           <li>
