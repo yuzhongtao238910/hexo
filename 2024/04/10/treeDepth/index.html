@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>求解树的最大深度 | Hexo:yzt238910@163.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="求解树的最大深度123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172function maxDepth(root) &#123;  if (root &#x3D;&#x3D;&#x3D; null) &#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="求解树的最大深度">
+<meta property="og:url" content="http://www.wenchangstreet.com/2024/04/10/treeDepth/index.html">
+<meta property="og:site_name" content="Hexo:yzt238910@163.com">
+<meta property="og:description" content="求解树的最大深度123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172function maxDepth(root) &#123;  if (root &#x3D;&#x3D;&#x3D; null) &#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-10T02:31:50.557Z">
+<meta property="article:modified_time" content="2024-04-10T02:31:50.557Z">
+<meta property="article:author" content="yuzhongtao">
+<meta property="article:tag" content="blog,article,backend,frontend">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo:yzt238910@163.com" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo:yzt238910@163.com</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">yuzhongtao</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.wenchangstreet.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-treeDepth" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/10/treeDepth/" class="article-date">
+  <time class="dt-published" datetime="2024-04-10T02:31:50.557Z" itemprop="datePublished">2024-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      求解树的最大深度
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="求解树的最大深度"><a href="#求解树的最大深度" class="headerlink" title="求解树的最大深度"></a>求解树的最大深度</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">maxDepth</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (root === <span class="literal">null</span>) &#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> queue = [root]</span><br><span class="line">  <span class="keyword">let</span> depth = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span>(queue.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> levelSize = queue.<span class="property">length</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; levelSize; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> node = queue.<span class="title function_">shift</span>()</span><br><span class="line">      <span class="keyword">if</span> (node.<span class="property">children</span> &amp;&amp; node.<span class="property">children</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        queue.<span class="title function_">push</span>(...node.<span class="property">children</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    depth++</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> depth</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试数据</span></span><br><span class="line"><span class="keyword">let</span> tree = &#123;  </span><br><span class="line">  <span class="attr">value</span>: <span class="number">1</span>,  </span><br><span class="line">  <span class="attr">children</span>: [  </span><br><span class="line">    &#123;  </span><br><span class="line">      <span class="attr">value</span>: <span class="number">2</span>,  </span><br><span class="line">      <span class="attr">children</span>: [  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">4</span>,  </span><br><span class="line">          <span class="attr">children</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">value</span>: <span class="number">100</span>,</span><br><span class="line">              <span class="attr">children</span>: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]  </span><br><span class="line">        &#125;,  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">5</span>,  </span><br><span class="line">          <span class="attr">children</span>: []  </span><br><span class="line">        &#125;  </span><br><span class="line">      ]  </span><br><span class="line">    &#125;,  </span><br><span class="line">    &#123;  </span><br><span class="line">      <span class="attr">value</span>: <span class="number">3</span>,  </span><br><span class="line">      <span class="attr">children</span>: [  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">6</span>,  </span><br><span class="line">          <span class="attr">children</span>: []  </span><br><span class="line">        &#125;  </span><br><span class="line">      ]  </span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;  </span><br><span class="line">      <span class="attr">value</span>: <span class="number">77</span>,  </span><br><span class="line">      <span class="attr">children</span>: [  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">88</span>,  </span><br><span class="line">          <span class="attr">children</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">value</span>: <span class="string">&#x27;888&#x27;</span>,</span><br><span class="line">              <span class="attr">children</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                  <span class="attr">value</span>: <span class="number">444</span>,</span><br><span class="line">                  <span class="attr">children</span>: []</span><br><span class="line">                &#125;</span><br><span class="line">              ]</span><br><span class="line">            &#125;</span><br><span class="line">          ]  </span><br><span class="line">        &#125;  </span><br><span class="line">      ]  </span><br><span class="line">    &#125;  </span><br><span class="line">  ]  </span><br><span class="line">&#125;;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/04/10/treeDepth/" data-id="clut72wq000079qs8ccpi994z" data-title="求解树的最大深度" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/04/07/func/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">函数柯里化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/04/10/treeDepth/">求解树的最大深度</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/07/func/">函数柯里化</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/25/238910/">模拟超时时间&amp;最大的请求次数</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/24/hand_promise/">实现简易的手写的promise</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 yuzhongtao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
