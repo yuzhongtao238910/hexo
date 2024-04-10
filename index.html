@@ -76,6 +76,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-event" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/10/event/" class="article-date">
+  <time class="dt-published" datetime="2024-04-10T09:28:15.323Z" itemprop="datePublished">2024-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/10/event/">react事件合成机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="react的事件合成机制-简易版本"><a href="#react的事件合成机制-简易版本" class="headerlink" title="react的事件合成机制(简易版本)"></a>react的事件合成机制(简易版本)</h3><p>react的合成事件，所有的事件都会绑定在根容器root之中，会最开始捕获以及最后的冒泡</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;parent&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;child&quot;</span>&gt;</span>apple<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  	<span class="keyword">const</span> <span class="title function_">parentBubble</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;react-父元素冒泡-1&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">parentCapture</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;react-父元素捕获+1&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">childBubble</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;react-子元素冒泡-2&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">childCapture</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;react-子元素捕获+2&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> parent = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;parent&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> child = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;child&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    parent.<span class="property">onClick</span> = parentBubble</span></span><br><span class="line"><span class="language-javascript">    parent.<span class="property">onClickCapture</span> = parentCapture</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    child.<span class="property">onClick</span> = childBubble</span></span><br><span class="line"><span class="language-javascript">    child.<span class="property">onClickCapture</span> = childCapture</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    root.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">(<span class="params">evt</span>) =&gt;</span> <span class="title function_">compoundEvent</span>(evt, <span class="literal">true</span>), <span class="literal">true</span>)</span></span><br><span class="line"><span class="language-javascript">    root.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">(<span class="params">evt</span>) =&gt;</span> <span class="title function_">compoundEvent</span>(evt, <span class="literal">false</span>), <span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">compoundEvent</span> = (<span class="params">evt, isCapture</span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> paths = []</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> currentTarget = evt.<span class="property">target</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">while</span> (currentTarget) &#123;</span></span><br><span class="line"><span class="language-javascript">        paths.<span class="title function_">push</span>(currentTarget)</span></span><br><span class="line"><span class="language-javascript">        currentTarget = currentTarget.<span class="property">parentNode</span></span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (isCapture) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">for</span> (<span class="keyword">let</span> i = paths.<span class="property">length</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> handler = paths[i].<span class="property">onClickCapture</span></span></span><br><span class="line"><span class="language-javascript">          handler &amp;&amp; <span class="title function_">handler</span>()</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">      &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; paths.<span class="property">length</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> handler = paths[i].<span class="property">onClick</span></span></span><br><span class="line"><span class="language-javascript">          handler &amp;&amp; <span class="title function_">handler</span>()</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    parent.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;父亲-原生事件-捕获&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="literal">true</span>)</span></span><br><span class="line"><span class="language-javascript">    parent.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;父亲-原生事件-冒泡&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">    child.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;儿子-原生事件-捕获&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="literal">true</span>)</span></span><br><span class="line"><span class="language-javascript">    child.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;儿子-原生事件-冒泡&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/04/10/event/" data-id="clutly9vt0003yls8c5ruebn2" data-title="react事件合成机制" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-treeDepth" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/10/treeDepth/" class="article-date">
@@ -104,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/10/treeDepth/" data-id="clut79gnl0007f7s8argddu92" data-title="求解树的最大深度" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/10/treeDepth/" data-id="clutly9vy0008yls80sbihiey" data-title="求解树的最大深度" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -145,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/07/func/" data-id="clut79gnh0003f7s8hqv60oqt" data-title="函数柯里化" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/07/func/" data-id="clutly9vu0004yls85gxe1bal" data-title="函数柯里化" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -195,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="clut79gn10000f7s83o7s2mad" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="clutly9vk0000yls8crjidhzo" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -243,7 +284,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="clut79gni0004f7s839o46l7p" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="clutly9vv0005yls8btoq1iva" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -293,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clut79gns000ff7s8c4i61jgo" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clutly9w6000gyls8a0ji837s" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -334,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" data-id="clut79gnr000df7s8d3w3b6u5" data-title="手写call/节流/防抖函数" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" data-id="clutly9w5000eyls87uhgaef9" data-title="手写call/节流/防抖函数" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -382,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/12/hexo/" data-id="clut79gnj0005f7s8fd3l3o6a" data-title="两个面试题fetch的请求时间/重发请求" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/12/hexo/" data-id="clutly9vw0006yls8enbe6fyg" data-title="两个面试题fetch的请求时间/重发请求" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -453,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="clut79gnr000ef7s842fwgytx" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="clutly9w6000fyls83v8dbw00" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -502,48 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/10/another/" data-id="clut79gnf0001f7s84r228mai" data-title="关于面试" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-cancel" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/09/cancel/" class="article-date">
-  <time class="dt-published" datetime="2024-03-09T09:51:06.359Z" itemprop="datePublished">2024-03-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/09/cancel/">关于取消请求和react native的环境配置的两个知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="取消请求"><a href="#取消请求" class="headerlink" title="取消请求"></a>取消请求</h2><p>目前普遍使用的是axios库，其包含了一个属性cancelToken,在0.22版本之前是可以使用该属性进行取消请求的</p>
-<p>但是从0.22版本之后改为了使用controlAbort,该方法在mdn上面有详细的解释，这里不再过多的说明</p>
-<h2 id="react-native的环境配置"><a href="#react-native的环境配置" class="headerlink" title="react native的环境配置"></a>react native的环境配置</h2><p>首先这个环境是真的不好配置，目前我只配置的ios的开发环境，坑爹的要死，这里只说两点<br>1- mac内置的ruby版本的2的版本，需要使用最新的3版本才可以<br>2- 在下载homebrew的时候会各种卡顿，大家可以搜索中科大源或者清华源进行配置<br>3- 在react native初始化之后，需要进入ios包并且使用pod install命令进行安装cocoapods包</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/09/cancel/" data-id="clut79gng0002f7s8230nbpgj" data-title="关于取消请求和react native的环境配置的两个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/10/another/" data-id="clutly9vq0001yls8d633b57k" data-title="关于面试" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -591,6 +591,10 @@
       <ul>
         
           <li>
+            <a href="/2024/04/10/event/">react事件合成机制</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/10/treeDepth/">求解树的最大深度</a>
           </li>
         
@@ -604,10 +608,6 @@
         
           <li>
             <a href="/2024/03/24/hand_promise/">实现简易的手写的promise</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包</a>
           </li>
         
       </ul>
