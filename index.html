@@ -76,6 +76,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-useState" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/11/useState/" class="article-date">
+  <time class="dt-published" datetime="2024-04-11T06:22:22.514Z" itemprop="datePublished">2024-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/11/useState/">自定义react-hooks之手写useState</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="手写react的useState"><a href="#手写react的useState" class="headerlink" title="手写react的useState"></a>手写react的useState</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom/client&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> hookStates = [] <span class="comment">// 针对多个变量 保存状态的数组</span></span><br><span class="line"><span class="keyword">let</span> hookIndex = <span class="number">0</span> <span class="comment">// 索引 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">myUseState</span>(<span class="params">initialState</span>) &#123;</span><br><span class="line">  hookStates[hookIndex] = hookStates[hookIndex] || initialState</span><br><span class="line">  <span class="keyword">let</span> currentIndex = hookIndex</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">setMyUseState</span>(<span class="params">newState</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> newState === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      newState = <span class="title function_">newState</span>(hookStates[currentIndex])</span><br><span class="line">    &#125;</span><br><span class="line">    hookStates[currentIndex] = newState</span><br><span class="line">    <span class="title function_">render</span>()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> [hookStates[hookIndex++], setMyUseState]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [ num1, setNum1 ] = <span class="title function_">myUseState</span>(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> [ num2, setNum2 ] = <span class="title function_">myUseState</span>(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> [ num3, setNum3 ] = <span class="title function_">myUseState</span>(<span class="number">2</span>)</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      apple</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;num1&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setNum1(num1+1)&#125;&gt;+1===官方的useState<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;num2&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setNum2(num2+1)&#125;&gt;+1===我的useState<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;num3&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setNum3(num3 =&gt; num3+1)&#125;&gt;+1===我的useState<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> root = <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>))</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">  hookIndex = <span class="number">0</span> <span class="comment">// 索引 </span></span><br><span class="line">  root.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">render</span>()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/04/11/useState/" data-id="cluuur3xa00099os81dhif3wg" data-title="自定义react-hooks之手写useState" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-event" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/10/event/" class="article-date">
@@ -105,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/10/event/" data-id="clutly9vt0003yls8c5ruebn2" data-title="react事件合成机制" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/10/event/" data-id="cluuur3x400039os8cpii7otp" data-title="react事件合成机制" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -145,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/10/treeDepth/" data-id="clutly9vy0008yls80sbihiey" data-title="求解树的最大深度" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/10/treeDepth/" data-id="cluuur3x900089os83w3i83g4" data-title="求解树的最大深度" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -186,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/07/func/" data-id="clutly9vu0004yls85gxe1bal" data-title="函数柯里化" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/07/func/" data-id="cluuur3x500049os8fthw9xpr" data-title="函数柯里化" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -236,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="clutly9vk0000yls8crjidhzo" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="cluuur3ww00009os89ih18fr0" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -284,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="clutly9vv0005yls8btoq1iva" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="cluuur3x600059os8gd3e5c63" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -334,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clutly9w6000gyls8a0ji837s" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="cluuur3xg000h9os834801ndr" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -375,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" data-id="clutly9w5000eyls87uhgaef9" data-title="手写call/节流/防抖函数" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" data-id="cluuur3xf000f9os8cbwf1qyd" data-title="手写call/节流/防抖函数" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -423,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/12/hexo/" data-id="clutly9vw0006yls8enbe6fyg" data-title="两个面试题fetch的请求时间/重发请求" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/12/hexo/" data-id="cluuur3x700069os85r17fbwy" data-title="两个面试题fetch的请求时间/重发请求" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -494,56 +534,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="clutly9w6000fyls83v8dbw00" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-another" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/10/another/" class="article-date">
-  <time class="dt-published" datetime="2024-03-10T14:27:45.611Z" itemprop="datePublished">2024-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/10/another/">关于面试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>从去年开始陆续接了一些面试从去年年末开始陆续接了一些面试，去年年末我一共只面试了3家，今年到现在为止面试3家吧，突然感觉到现在手写的题也好，算法也好真的太多了，当然了，大部分业务都是crud，我自认为简历已经写的比刚入行好太多了，记得刚入行的时候，连axios封装都写在简历里面，现在基本不写了</p>
-<p>组件库的出现是好事，也是坏事，框架的出现是好事，也是坏事，我记得一个老师说vue出现就是让大家写代码的水平都差不多，现在看来确实是这样啊</p>
-<p>虽然手写的题有些要求都很奇怪啊，但是这就是选拔，我虽然有些不会，但是也是实属无奈，去年尝试的3家手写基本上都挂了，一些源码的原理都挂了，今年好不容易把vue源码快结束，突然发现大家都不问框架了。。。</p>
-<p>一方面感慨入行真的是太晚了，入行的时候会写个vue2就可以找到工作，到现在是吧</p>
-<p>不过今天也算是面试我个人觉得有进步点了，起码算法题写出来一个，当然了，这道是leetcode的原题，我做过</p>
-<p>算法就是大部分题都是没做过就是没有思路，这个东西，我到现在为止也就是刷过30道左右吧，还都是简单的，向回溯和动态规划简直是见一次晕一次</p>
-<p>看到最出名的中科大的博士论文致谢，里面讲到尊严是呀，钱固然是重要，可对一个受了点教育的人来说，尊严有时候也很重要啊，在面试也好，工作也罢，可好像到头来还是钱重要是吗？</p>
-<p>人生真的路漫漫啊！</p>
-<p>希望尽快将vue的源码解决完，还剩下最后的2周，然后开始react的源码，到react源码结束掉，估计要到4月份至少是中旬末期吧，都不会在接面试了，在至少做一个react项目再说吧！！！</p>
-<p>经济形势不好，项目也渐渐的偏于趋同化，怎么办泥？我也不知道啊！！！</p>
-<p>仅以此篇发牢骚！！！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/10/another/" data-id="clutly9vq0001yls8d633b57k" data-title="关于面试" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="cluuur3xg000g9os8gog276sw" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -591,6 +582,10 @@
       <ul>
         
           <li>
+            <a href="/2024/04/11/useState/">自定义react-hooks之手写useState</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/10/event/">react事件合成机制</a>
           </li>
         
@@ -604,10 +599,6 @@
         
           <li>
             <a href="/2024/03/25/238910/">模拟超时时间&amp;最大的请求次数</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/24/hand_promise/">实现简易的手写的promise</a>
           </li>
         
       </ul>
