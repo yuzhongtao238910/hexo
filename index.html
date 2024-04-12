@@ -76,6 +76,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-layouteffect" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/12/layouteffect/" class="article-date">
+  <time class="dt-published" datetime="2024-04-12T01:10:05.523Z" itemprop="datePublished">2024-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/12/layouteffect/">手写 useEffect 和 useLayoutEffect</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="手写useEffect和useLayoutEffect"><a href="#手写useEffect和useLayoutEffect" class="headerlink" title="手写useEffect和useLayoutEffect"></a>手写useEffect和useLayoutEffect</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom/client&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; useRef &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span></span><br><span class="line"><span class="keyword">let</span> hookStates = [] <span class="comment">// 针对多个变量 保存状态的数组</span></span><br><span class="line"><span class="keyword">let</span> hookIndex = <span class="number">0</span> <span class="comment">// 索引</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">myUseEffect</span>(<span class="params">callback, dependencies</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (hookStates[hookIndex]) &#123; <span class="comment">// 说明不是第一次渲染</span></span><br><span class="line">    <span class="keyword">let</span> lastDependencies = hookStates[hookIndex]</span><br><span class="line">    <span class="comment">// 判断新的依赖数组之中的每一项是否根上次的完全相等</span></span><br><span class="line">    <span class="keyword">let</span> same = dependencies.<span class="title function_">every</span>(<span class="function">(<span class="params">item, index</span>) =&gt;</span> item === lastDependencies[index])</span><br><span class="line">    <span class="keyword">if</span> (same) &#123;</span><br><span class="line">      hookIndex++</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      hookStates[hookIndex++] = dependencies</span><br><span class="line">      <span class="comment">// 添加一个宏任务，在本次渲染之后执行</span></span><br><span class="line">      <span class="comment">// callback()</span></span><br><span class="line">      <span class="built_in">setTimeout</span>(callback)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123; <span class="comment">// 说明是第一次渲染</span></span><br><span class="line">    hookStates[hookIndex++] = dependencies</span><br><span class="line">    <span class="comment">// callback()</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(callback)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">myUseLayoutEffect</span>(<span class="params">callback, dependencies</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (hookStates[hookIndex]) &#123; <span class="comment">// 说明不是第一次渲染</span></span><br><span class="line">    <span class="keyword">let</span> lastDependencies = hookStates[hookIndex]</span><br><span class="line">    <span class="comment">// 判断新的依赖数组之中的每一项是否根上次的完全相等</span></span><br><span class="line">    <span class="keyword">let</span> same = dependencies.<span class="title function_">every</span>(<span class="function">(<span class="params">item, index</span>) =&gt;</span> item === lastDependencies[index])</span><br><span class="line">    <span class="keyword">if</span> (same) &#123;</span><br><span class="line">      hookIndex++</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      hookStates[hookIndex++] = dependencies</span><br><span class="line">      <span class="comment">// 添加一个微任务 在浏览器渲染之前执行</span></span><br><span class="line">      <span class="title function_">queueMicrotask</span>(callback)</span><br><span class="line">      <span class="comment">// callback()</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123; <span class="comment">// 说明是第一次渲染</span></span><br><span class="line">    hookStates[hookIndex++] = dependencies</span><br><span class="line">    <span class="comment">// callback()</span></span><br><span class="line">    <span class="title function_">queueMicrotask</span>(callback)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Animation</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> red = <span class="title function_">useRef</span>(<span class="literal">null</span>)</span><br><span class="line">  <span class="keyword">const</span> green = <span class="title function_">useRef</span>(<span class="literal">null</span>)</span><br><span class="line">  <span class="keyword">let</span> style = &#123;<span class="attr">width</span>: <span class="string">&#x27;100px&#x27;</span>, <span class="attr">height</span>: <span class="string">&#x27;100px&#x27;</span>&#125;</span><br><span class="line">  <span class="comment">//增加一个微任务 主执行栈结束后 先清空微任务 在进行浏览器渲染</span></span><br><span class="line">  <span class="title function_">myUseLayoutEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    red.<span class="property">current</span>.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">&#x27;translate(500px)&#x27;</span></span><br><span class="line">    red.<span class="property">current</span>.<span class="property">style</span>.<span class="property">transition</span> = <span class="string">&#x27;all 500ms&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="title function_">myUseEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    green.<span class="property">current</span>.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">&#x27;translate(500px)&#x27;</span></span><br><span class="line">    green.<span class="property">current</span>.<span class="property">style</span>.<span class="property">transition</span> = <span class="string">&#x27;all 500ms&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&#123;red&#125;</span> <span class="attr">style</span>=<span class="string">&#123;&#123;...style,</span> <span class="attr">backgroundColor:</span> &#x27;<span class="attr">red</span>&#x27;&#125;&#125;&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&#123;green&#125;</span> <span class="attr">style</span>=<span class="string">&#123;&#123;...style,</span> <span class="attr">backgroundColor:</span> &#x27;<span class="attr">green</span>&#x27;&#125;&#125;&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">  hookIndex = <span class="number">0</span></span><br><span class="line">  root.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">Animation</span> /&gt;</span></span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> root = <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>));</span><br><span class="line"><span class="title function_">render</span>()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/04/12/layouteffect/" data-id="cluvz1d040008f6s8bfq80q4b" data-title="手写 useEffect 和 useLayoutEffect" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-useState" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/11/useState/" class="article-date">
@@ -104,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/11/useState/" data-id="cluuur3xa00099os81dhif3wg" data-title="自定义react-hooks之手写useState" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/11/useState/" data-id="cluvz1d06000af6s8h6k32jyd" data-title="自定义react-hooks之手写useState" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -145,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/10/event/" data-id="cluuur3x400039os8cpii7otp" data-title="react事件合成机制" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/10/event/" data-id="cluvz1czy0003f6s86ig6due6" data-title="react事件合成机制" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -185,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/10/treeDepth/" data-id="cluuur3x900089os83w3i83g4" data-title="求解树的最大深度" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/10/treeDepth/" data-id="cluvz1d050009f6s88t3922qt" data-title="求解树的最大深度" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -226,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/07/func/" data-id="cluuur3x500049os8fthw9xpr" data-title="函数柯里化" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/07/func/" data-id="cluvz1czz0004f6s84sph1ugg" data-title="函数柯里化" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -276,7 +316,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="cluuur3ww00009os89ih18fr0" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="cluvz1czk0000f6s84wma9l1z" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -324,7 +364,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="cluuur3x600059os8gd3e5c63" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="cluvz1d010005f6s8ac2p5mxv" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -374,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="cluuur3xg000h9os834801ndr" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="cluvz1d0e000if6s88w3ibdyo" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -415,7 +455,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" data-id="cluuur3xf000f9os8cbwf1qyd" data-title="手写call/节流/防抖函数" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" data-id="cluvz1d0c000gf6s806rzes7h" data-title="手写call/节流/防抖函数" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -463,78 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/12/hexo/" data-id="cluuur3x700069os85r17fbwy" data-title="两个面试题fetch的请求时间/重发请求" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-数据类型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="article-date">
-  <time class="dt-published" datetime="2024-03-12T01:00:03.311Z" itemprop="datePublished">2024-03-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">关于js之中的数据类型的转换的原则</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h5 id="原始-》-数字-调用Number"><a href="#原始-》-数字-调用Number" class="headerlink" title="原始 -》 数字 调用Number()"></a>原始 -》 数字 调用Number()</h5><ul>
-<li>true 1</li>
-<li>false 0</li>
-<li>null 0</li>
-<li>undefined NaN</li>
-<li>NaN NaN</li>
-<li>string<ul>
-<li>空字符串（含空白字符\t\r\n）：0</li>
-<li>去掉引号：不是数字就是NaN</li>
-<li>存在空格的话，会去掉首尾的空格来转换</li>
-</ul>
-</li>
-</ul>
-<h5 id="所有-》-bool-调用Boolean"><a href="#所有-》-bool-调用Boolean" class="headerlink" title="所有 -》 bool 调用Boolean()"></a>所有 -》 bool 调用Boolean()</h5><ul>
-<li>0 false</li>
-<li>undefined false</li>
-<li>null false</li>
-<li>NaN false</li>
-<li>空字符串 false 只有空字符串是false</li>
-<li>其他都是true</li>
-</ul>
-<h5 id="原始-》-字符串-调用String"><a href="#原始-》-字符串-调用String" class="headerlink" title="原始 -》 字符串 调用String()"></a>原始 -》 字符串 调用String()</h5><ul>
-<li>null “null”</li>
-<li>NaN “NaN “</li>
-<li>undefined “undefined”</li>
-<li>number “数字”</li>
-<li>true “true”</li>
-<li>false “false”</li>
-</ul>
-<p>对象 -》 原始</p>
-<ul>
-<li>调用valueOf 得到的是对象的话，就会调用toString()，如果toString得到的还是对象的话，就会报错</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="cluuur3xg000g9os8gog276sw" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/12/hexo/" data-id="cluvz1d020006f6s85hdv90le" data-title="两个面试题fetch的请求时间/重发请求" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -582,6 +551,10 @@
       <ul>
         
           <li>
+            <a href="/2024/04/12/layouteffect/">手写 useEffect 和 useLayoutEffect</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/11/useState/">自定义react-hooks之手写useState</a>
           </li>
         
@@ -595,10 +568,6 @@
         
           <li>
             <a href="/2024/04/07/func/">函数柯里化</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/25/238910/">模拟超时时间&amp;最大的请求次数</a>
           </li>
         
       </ul>
