@@ -4,17 +4,15 @@
   <meta charset="utf-8">
   
   
-  <title>关于js之中的数据类型的转换的原则 | Hexo:yzt238910@163.com</title>
+  <title>Hexo:yzt238910@163.com</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="原始 -》 数字 调用Number() true 1 false 0 null 0 undefined NaN NaN NaN string 空字符串（含空白字符\t\r\n）：0 去掉引号：不是数字就是NaN 存在空格的话，会去掉首尾的空格来转换    所有 -》 bool 调用Boolean() 0 false undefined false null false NaN false 空字符串">
-<meta property="og:type" content="article">
-<meta property="og:title" content="关于js之中的数据类型的转换的原则">
-<meta property="og:url" content="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
+  <meta name="description" content="yuzhongtao apple blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo:yzt238910@163.com">
+<meta property="og:url" content="http://www.wenchangstreet.com/page/3/index.html">
 <meta property="og:site_name" content="Hexo:yzt238910@163.com">
-<meta property="og:description" content="原始 -》 数字 调用Number() true 1 false 0 null 0 undefined NaN NaN NaN string 空字符串（含空白字符\t\r\n）：0 去掉引号：不是数字就是NaN 存在空格的话，会去掉首尾的空格来转换    所有 -》 bool 调用Boolean() 0 false undefined false null false NaN false 空字符串">
+<meta property="og:description" content="yuzhongtao apple blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-12T01:00:03.311Z">
-<meta property="article:modified_time" content="2024-03-12T01:00:03.311Z">
 <meta property="article:author" content="yuzhongtao">
 <meta property="article:tag" content="blog,article,backend,frontend">
 <meta name="twitter:card" content="summary">
@@ -76,10 +74,12 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-数据类型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main">
+  
+    <article id="post-基于虚拟列表的超级滚动的scroll" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="article-date">
-  <time class="dt-published" datetime="2024-03-12T01:00:03.311Z" itemprop="datePublished">2024-03-12</time>
+    <a href="/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/" class="article-date">
+  <time class="dt-published" datetime="2024-02-28T15:10:21.931Z" itemprop="datePublished">2024-02-28</time>
 </a>
     
   </div>
@@ -89,8 +89,8 @@
       <header class="article-header">
         
   
-    <h1 class="p-name article-title" itemprop="headline name">
-      关于js之中的数据类型的转换的原则
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/">super-vue-seamless-scroll</a>
     </h1>
   
 
@@ -98,73 +98,67 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h5 id="原始-》-数字-调用Number"><a href="#原始-》-数字-调用Number" class="headerlink" title="原始 -》 数字 调用Number()"></a>原始 -》 数字 调用Number()</h5><ul>
-<li>true 1</li>
-<li>false 0</li>
-<li>null 0</li>
-<li>undefined NaN</li>
-<li>NaN NaN</li>
-<li>string<ul>
-<li>空字符串（含空白字符\t\r\n）：0</li>
-<li>去掉引号：不是数字就是NaN</li>
-<li>存在空格的话，会去掉首尾的空格来转换</li>
-</ul>
-</li>
-</ul>
-<h5 id="所有-》-bool-调用Boolean"><a href="#所有-》-bool-调用Boolean" class="headerlink" title="所有 -》 bool 调用Boolean()"></a>所有 -》 bool 调用Boolean()</h5><ul>
-<li>0 false</li>
-<li>undefined false</li>
-<li>null false</li>
-<li>NaN false</li>
-<li>空字符串 false 只有空字符串是false</li>
-<li>其他都是true</li>
-</ul>
-<h5 id="原始-》-字符串-调用String"><a href="#原始-》-字符串-调用String" class="headerlink" title="原始 -》 字符串 调用String()"></a>原始 -》 字符串 调用String()</h5><ul>
-<li>null “null”</li>
-<li>NaN “NaN “</li>
-<li>undefined “undefined”</li>
-<li>number “数字”</li>
-<li>true “true”</li>
-<li>false “false”</li>
-</ul>
-<p>对象 -》 原始</p>
+        <hr>
+<h1 id="SUPER-VUE-SEAMLESS-SCROLL"><a href="#SUPER-VUE-SEAMLESS-SCROLL" class="headerlink" title="SUPER-VUE-SEAMLESS-SCROLL"></a>SUPER-VUE-SEAMLESS-SCROLL</h1><h2 id="超级滚动列表"><a href="#超级滚动列表" class="headerlink" title="超级滚动列表"></a>超级滚动列表</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>目前在大屏开发之中，我们经常会使用vue-seamless-scroll组件</p>
 <ul>
-<li>调用valueOf 得到的是对象的话，就会调用toString()，如果toString得到的还是对象的话，就会报错</li>
+<li>vue2版本使用的是 vue-seamless-scroll</li>
+<li>vue3版本使用的是 vue3-seamless-scroll</li>
 </ul>
+<p>但是这个组件普遍存在一个<strong>问题，就是在针对大数据量渲染的时候，页面会非常的卡顿</strong></p>
+<p>卡顿的原因在于，vue-seamless-scroll组件的实现原理，在内部的实现原理是使用的两个同样的dom界面，在位移变换的时候实现无缝滚动的效果，下图可以展示，下图使用的是vue2的vue-seamless-scroll源码</p>
+<img src="/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/image-20240228154449751.png" class="" title="apple1">
+
+<p>这种模式就会导致永远是双倍的数据量&#x2F;dom节点在渲染，所以当有大数据量是会产生卡顿的现象</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>目前针对大数据量处理的问题主要有3种</p>
+<ul>
+<li>web worker 无法操作dom</li>
+<li>切片渲染 requestAnimationFrame 但是无法解决渲染过多的问题</li>
+<li>虚拟列表 最好的方案</li>
+</ul>
+<p>本案例采取的是虚拟列表方案，目前市面上的虚拟列表主要是针对select选择组件实现的，virtual-list，它只能是手动的滚动，而无法自动的滚动，本案例专门是针对大屏项目开发的可以支持<strong>大数据量滚动的虚拟列表实现</strong></p>
+<p>在实测之中支持10万条数据轻而易举，而且在浏览器的性能选项之中，较vue-seamless-scroll表现相当出色，看下图，可以在代码之中调试data.js的循环次数来调试测试</p>
+<img src="/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/image-20240228154534415.png" class="" title="apple2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="clv5z6xpd000j8us83x126302" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/" data-id="clv5z6xpc000h8us8dicnda3l" data-title="super-vue-seamless-scroll" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2024/03/12/hexo/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          两个面试题fetch的请求时间/重发请求
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2024/03/10/another/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">关于面试</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
 
 </section>
         
