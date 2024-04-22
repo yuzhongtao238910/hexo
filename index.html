@@ -76,6 +76,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-promise" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/22/promise/" class="article-date">
+  <time class="dt-published" datetime="2024-04-22T01:16:58.823Z" itemprop="datePublished">2024-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/22/promise/">promise的几个静态方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Promise的几个静态方法"><a href="#Promise的几个静态方法" class="headerlink" title="Promise的几个静态方法"></a>Promise的几个静态方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise0 = <span class="title class_">Promise</span>.<span class="title function_">reject</span>(<span class="number">3333</span>);</span><br><span class="line"><span class="keyword">const</span> promise1 = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="title class_">Promise</span>.<span class="title function_">reject</span>(<span class="number">34</span>); </span><br><span class="line"><span class="keyword">const</span> promise3 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="number">999</span>)</span><br><span class="line">  &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> promises = [promise0, promise1, promise2, promise3];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// allSettled 返回的 Promise 将被兑现，并带有描述每个 Promise 结果的对象数组。</span></span><br><span class="line"><span class="comment">// allSettled会返回所有的结果，不管是错误还是正常</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">allSettled</span>(promises).<span class="title function_">then</span>(<span class="function">(<span class="params">results</span>) =&gt;</span></span><br><span class="line">  <span class="comment">// &#123; status, value&#125; &#123;status reason&#125;</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(results, <span class="number">24</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回的 Promise 也将被兑现（即使传入的是一个空的可迭代对象）</span></span><br><span class="line"><span class="comment">// 并返回一个包含所有兑现值的数组。如果输入的任何 Promise 被拒绝，则返回的 Promise 将被拒绝，并带有第一个被拒绝的原因。</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>(promises).<span class="title function_">then</span>(<span class="function">(<span class="params">results</span>) =&gt;</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(results)</span><br><span class="line">).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err, <span class="number">33</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当输入的任何一个 Promise 兑现时，这个返回的 Promise 将会兑现，并返回第一个兑现的值。当所有输入 Promise 都被拒绝（包括传递了空的可迭代对象）时，它会以一个包含拒绝原因数组的 AggregateError 拒绝。</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">any</span>(promises).<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(result, <span class="number">39</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 静态方法接受一个 promise 可迭代对象作为输入，并返回一个 Promise。这个返回的 promise 会随着第一个 promise 的敲定而敲定。</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>(promises).<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br><span class="line">).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err, <span class="number">48</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 总结：</span></span><br><span class="line"><span class="comment"> * all：当所有的成功的时候，就会返回成功的数组，否则只要有被拒绝的，就会返回第一个被拒绝的原因</span></span><br><span class="line"><span class="comment"> * allSettled：返回所有的结果，不管是成功还是正常</span></span><br><span class="line"><span class="comment"> * race：返回第一个结果，不管是成功还是正常</span></span><br><span class="line"><span class="comment"> * any：只有有成功的，就会返回第一个成功</span></span><br><span class="line"><span class="comment"> */</span> </span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/04/22/promise/" data-id="clva9opw1000b7xs8g274f8zb" data-title="promise的几个静态方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-bind" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/19/bind/" class="article-date">
@@ -106,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/19/bind/" data-id="clv5z6xp000038us8cihy5cio" data-title="手写bind、手写深拷贝" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/19/bind/" data-id="clva9opvp00037xs89o2i3itu" data-title="手写bind、手写深拷贝" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -148,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/14/README/" data-id="clv5z6xox00018us8ab3q15sw" data-title="关于react的工程化配置，webpack版本，亮点如下" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/14/README/" data-id="clva9opvc00017xs8cmchegot" data-title="关于react的工程化配置，webpack版本，亮点如下" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -188,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/12/layouteffect/" data-id="clv5z6xp6000a8us81i8ndby3" data-title="手写 useEffect 和 useLayoutEffect" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/12/layouteffect/" data-id="clva9opvz000a7xs825fnd1ve" data-title="手写 useEffect 和 useLayoutEffect" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -228,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/11/useState/" data-id="clv5z6xp8000c8us82i1phqdy" data-title="自定义react-hooks之手写useState" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/11/useState/" data-id="clva9opw3000d7xs8de0agazh" data-title="自定义react-hooks之手写useState" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -269,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/10/event/" data-id="clv5z6xp200058us889bkgznk" data-title="react事件合成机制" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/10/event/" data-id="clva9opvs00057xs85im31y4h" data-title="react事件合成机制" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -309,7 +349,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/10/treeDepth/" data-id="clv5z6xp7000b8us806eb8rtt" data-title="求解树的最大深度" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/10/treeDepth/" data-id="clva9opw2000c7xs8ao0x1h0r" data-title="求解树的最大深度" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -350,7 +390,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/07/func/" data-id="clv5z6xp300068us84nud8nnb" data-title="函数柯里化" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/07/func/" data-id="clva9opvu00067xs80zb3cj2x" data-title="函数柯里化" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -400,7 +440,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="clv5z6xos00008us89p0g4y50" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="clva9opv500007xs8bwo659x3" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -448,57 +488,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="clv5z6xp300078us8bawgai2s" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-设计模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time class="dt-published" datetime="2024-03-22T01:55:49.100Z" itemprop="datePublished">2024-03-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>自始至终只返回同一个对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 两种写法 使用自执行函数</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Single</span> = (<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="keyword">let</span> instance = <span class="literal">null</span></span><br><span class="line">	<span class="keyword">function</span> <span class="title function_">User</span> (name, age) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!instance) &#123;</span><br><span class="line">			<span class="comment">// 创建实例</span></span><br><span class="line">			instance = <span class="keyword">new</span> <span class="title class_">User</span>(name, age)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> aa = <span class="title class_">Single</span>(<span class="string">&#x27;11&#x27;</span>, <span class="string">&#x27;22&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> bb = <span class="title class_">Single</span>(<span class="string">&#x27;dd&#x27;</span>, <span class="string">&#x27;44&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(aa === bb)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用类的写法</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Singler</span> &#123;</span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="title class_">Singler</span>.<span class="property">instance</span>) &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">name</span> = name</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">age</span> = age</span><br><span class="line">			<span class="title class_">Singler</span>.<span class="property">instance</span> = <span class="variable language_">this</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="title function_">getInstance</span>(<span class="params">name, age</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="title class_">Singler</span>.<span class="property">instance</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="title class_">Singler</span>.<span class="property">instance</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Singler</span>(name, age)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> yy = <span class="title class_">Singler</span>.<span class="title function_">getInstance</span>(<span class="string">&#x27;11&#x27;</span>, <span class="number">22</span>)</span><br><span class="line"><span class="keyword">const</span> kk = <span class="title class_">Singler</span>.<span class="title function_">getInstance</span>(<span class="string">&#x27;22&#x27;</span>, <span class="number">33</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(yy, kk, yy === kk)</span><br></pre></td></tr></table></figure>
-
-<h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 话说，proxy不就是观察者吗？在get之中捕获，在set之中发布</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这是一个简单的案例</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">PubSub</span> = &#123;</span><br><span class="line">	<span class="attr">list</span>: [],</span><br><span class="line">	<span class="title function_">publish</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">list</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="title function_">item</span>())</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="title function_">subscribe</span>(<span class="params">cb</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">list</span>.<span class="title function_">push</span>(cb)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testA</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;aa&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testB</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;bb&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">subscribe</span>(testA)</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">subscribe</span>(testB)</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">publish</span>()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h3><p>发布订阅模式，类似于油管的subscribe，或者是b站的关注，观察者模式是全部执行，发布订阅模式是有针对性的执行</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// publish 发布者</span></span><br><span class="line"><span class="comment">// subscribe 订阅者</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">PubSub</span> = &#123;</span><br><span class="line">	<span class="attr">message</span>: &#123;&#125;,</span><br><span class="line">	<span class="comment">// 发布</span></span><br><span class="line">	<span class="title function_">publish</span>(<span class="params">type, data</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">message</span>[type]?.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="title function_">item</span>(data))</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// 订阅</span></span><br><span class="line">	<span class="title function_">subscribe</span>(<span class="params">type, cb</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">message</span>[type]) &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">message</span>[type] = [cb]</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">message</span>[type].<span class="title function_">push</span>(cb)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="title function_">unSubscribe</span>(<span class="params">type, cb</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!cb) &#123;</span><br><span class="line">            <span class="comment">// 如果不传递的话，就会取消所有的</span></span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">message</span>[type] &amp;&amp; (<span class="variable language_">this</span>.<span class="property">message</span>[type] = <span class="literal">null</span>)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">message</span>[type] &amp;&amp; (<span class="variable language_">this</span>.<span class="property">message</span>[type] = <span class="variable language_">this</span>.<span class="property">message</span>[type].<span class="title function_">filter</span>(<span class="function"><span class="params">item</span> =&gt;</span> item !== cb))</span><br><span class="line">		&#125;</span><br><span class="line">				</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testA</span>(<span class="params">data</span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;aa&#x27;</span>, data)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testB</span>(<span class="params">data</span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;bb&#x27;</span>, data)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">subscribe</span>(<span class="string">&#x27;aa&#x27;</span>, testA)</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">subscribe</span>(<span class="string">&#x27;bb&#x27;</span>, testB)</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">unSubscribe</span>(<span class="string">&#x27;bb&#x27;</span>, testB)</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">publish</span>(<span class="string">&#x27;aa&#x27;</span>, <span class="number">238910</span>)</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">publish</span>(<span class="string">&#x27;bb&#x27;</span>, <span class="number">238910</span>)</span><br><span class="line"><span class="title class_">PubSub</span>.<span class="title function_">publish</span>(<span class="string">&#x27;cc&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="mitt包-vue3使用mitt包跨组件通信的比较多，下面是一个简易实现，和发布订阅基本一样的，并且可以在项目之中测试，都可ok"><a href="#mitt包-vue3使用mitt包跨组件通信的比较多，下面是一个简易实现，和发布订阅基本一样的，并且可以在项目之中测试，都可ok" class="headerlink" title="mitt包 vue3使用mitt包跨组件通信的比较多，下面是一个简易实现，和发布订阅基本一样的，并且可以在项目之中测试，都可ok"></a>mitt包 vue3使用mitt包跨组件通信的比较多，下面是一个简易实现，和发布订阅基本一样的，并且可以在项目之中测试，都可ok</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Mitt</span> &#123;</span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">message</span> = &#123;&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="title function_">emit</span>(<span class="params">type, data</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">message</span>[type]?.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="title function_">item</span>(data))</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="title function_">on</span>(<span class="params">type, func</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">message</span>[type]) &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">message</span>[type].<span class="title function_">push</span>(func)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">message</span>[type] = [func]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="title function_">off</span>(<span class="params">type, func</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (func) &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">message</span>[type] = <span class="variable language_">this</span>.<span class="property">message</span>[type].<span class="title function_">filter</span>(<span class="function"><span class="params">item</span> =&gt;</span> item !== func)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">message</span>[type] &amp;&amp; (<span class="variable language_">this</span>.<span class="property">message</span>[type] = <span class="literal">null</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> emitter = <span class="keyword">new</span> <span class="title class_">Mitt</span>()</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clv5z6xpe000k8us896u07kja" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="clva9opvv00077xs80bt18wew" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -546,6 +536,10 @@
       <ul>
         
           <li>
+            <a href="/2024/04/22/promise/">promise的几个静态方法</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/19/bind/">手写bind、手写深拷贝</a>
           </li>
         
@@ -559,10 +553,6 @@
         
           <li>
             <a href="/2024/04/11/useState/">自定义react-hooks之手写useState</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/10/event/">react事件合成机制</a>
           </li>
         
       </ul>
