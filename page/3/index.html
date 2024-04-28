@@ -76,6 +76,59 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-今日我学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-03T14:51:02.331Z" itemprop="datePublished">2024-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/">三个新发现的api/或者能够称为面试题吗？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>1- symbol</p>
+<p>symbol 是一种基本数据类型;每个从 Symbol() 返回的 symbol 值都是唯一的。一个 symbol 值能作为对象属性的标识符</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Symbol</span>(<span class="string">&quot;foo&quot;</span>) === <span class="title class_">Symbol</span>(<span class="string">&quot;foo&quot;</span>); <span class="comment">// false</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>但是：Symbol.for(key) 方法会根据给定的键 key，来从运行时的 symbol 注册表中找到对应的 symbol，如果找到了，则返回它，否则，新建一个与该键关联的 symbol，并放入全局 symbol 注册表中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Symbol</span>.<span class="title function_">for</span>(key);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&quot;bar&quot;</span>) === <span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&quot;bar&quot;</span>); <span class="comment">// true，证明了上面说的</span></span><br><span class="line"><span class="title class_">Symbol</span>(<span class="string">&quot;bar&quot;</span>) === <span class="title class_">Symbol</span>(<span class="string">&quot;bar&quot;</span>); <span class="comment">// false，Symbol() 函数每次都会返回新的一个 symbol</span></span><br></pre></td></tr></table></figure>
+
+
+<p>2- flex 的 对应的属性，看到过对应的面试题<br>-	flex-basic: CSS 属性 flex-basis 指定了 flex 元素在主轴方向上的初始大小。如果不使用 box-sizing 改变盒模型的话，那么这个属性就决定了 flex 元素的内容盒（content-box）的尺寸。<br>注意： 当一个元素同时被设置了 flex-basis (除值为 auto 外) 和 width (或者在 flex-direction: column 情况下设置了height) , flex-basis 具有更高的优先级。<br>-	flex-direction: 布局方向<br>-	flex-wrap: 是否换行<br>-	flex-shrink: 收缩规则，flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。<br>-	flex-grow:  flex 项 主尺寸 的 flex 增长系数。 简而言之，占据几份</p>
+<ul>
+<li><pre><code>flex-flow:  属性是 flex-direction 和 flex-wrap 的简写。
+</code></pre>
+</li>
+</ul>
+<p>3- 关于空闲切片时间函数requestIdleCallback</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span><br><span class="line">	&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">		function sleep(duration, t1) &#123;</span><br><span class="line">            for (let t = Date.now(); Date.now() - t &lt;= duration;) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            console.log(Date.now() - t1)</span><br><span class="line">        &#125;</span><br><span class="line">        const works = [</span><br><span class="line">            () =&gt; &#123;</span><br><span class="line">                const t1 = Date.now()</span><br><span class="line">                console.log(&quot;第一个任务开始&quot;)</span><br><span class="line">                sleep(7000, t1)</span><br><span class="line">                console.log(&quot;第一个任务结束&quot;)</span><br><span class="line">            &#125;,</span><br><span class="line">            () =&gt; &#123;</span><br><span class="line">                const t1 = Date.now()</span><br><span class="line">                console.log(&quot;第2个任务开始&quot;)</span><br><span class="line">                sleep(7000, t1)</span><br><span class="line">                console.log(&quot;第2个任务结束&quot;)</span><br><span class="line">            &#125;,</span><br><span class="line">            () =&gt; &#123;</span><br><span class="line">                const t1 = Date.now()</span><br><span class="line">                console.log(&quot;第3个任务开始&quot;)</span><br><span class="line">                sleep(7000, t1)</span><br><span class="line">                console.log(&quot;第3个任务结束&quot;)</span><br><span class="line">                console.log(Date.now() - aa)</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">        // 情况1 : 利用空闲时间渲染dom，第一个任务结束后，会执行setTimeout</span><br><span class="line">        // 执行完setTimeout之后，会放到下一帧进行熏染，也就是第2个任务结束之后</span><br><span class="line">        requestIdleCallback(workLoop)</span><br><span class="line">        function workLoop(deadline) &#123;</span><br><span class="line">        	while(deadline.timeRemaining() &gt; 1 &amp;&amp; works.length &gt; 0) &#123;</span><br><span class="line">    			performUnitOfWork()</span><br><span class="line">			&#125;</span><br><span class="line">			if (works.length &gt; 0) &#123;</span><br><span class="line">			    console.log(`只剩下$&#123;deadline.timeRemaining()&#125;，时间片不够了，等待浏览器下次渲染的时候调用`)</span><br><span class="line">				requestIdleCallback(workLoop)</span><br><span class="line">			&#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 情况2: 会所有任务执行完毕进行熏染</span><br><span class="line">        function workLoop() &#123;</span><br><span class="line">        	while(works.length &gt; 0) &#123;</span><br><span class="line">                performUnitOfWork()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        workLoop()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        function performUnitOfWork() &#123;</span><br><span class="line">            let work = works.shift() // 取出任务数组之中的第一个任务</span><br><span class="line">            work()</span><br><span class="line">        &#125;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            console.log(&quot;11111&quot;)</span><br><span class="line">            app.innerHTML = &quot;aaaaaa&quot;</span><br><span class="line">            console.log(&quot;22222&quot;)</span><br><span class="line">        &#125;, 3000)</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/" data-id="clvituc4y000i8ss85s750ize" data-title="三个新发现的api/或者能够称为面试题吗？" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-依据大模型的api接口进行请求" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/" class="article-date">
@@ -107,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/" data-id="clvafbyz4000igws81lsueila" data-title="根据大模型的api流式接口进行请求返回" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/" data-id="clvituc4z000j8ss8epcbfngt" data-title="根据大模型的api流式接口进行请求返回" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -149,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/" data-id="clvafbyz1000fgws887444n4k" data-title="关于hexo建站之后的图片显示问题" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/" data-id="clvituc4x000g8ss804ax8v4g" data-title="关于hexo建站之后的图片显示问题" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -226,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/" data-id="clvafbyz4000jgws86p0e7j3t" data-title="super-vue-seamless-scroll" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/" data-id="clvituc4z000k8ss867qf0nem" data-title="super-vue-seamless-scroll" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -274,6 +327,10 @@
       <ul>
         
           <li>
+            <a href="/2024/04/28/LRU/">LRU算法/最久未使用</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/22/arrayToTree/">平级数组转换为树形数组的方法</a>
           </li>
         
@@ -287,10 +344,6 @@
         
           <li>
             <a href="/2024/04/14/README/">关于react的工程化配置，webpack版本，亮点如下</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/12/layouteffect/">手写 useEffect 和 useLayoutEffect</a>
           </li>
         
       </ul>
