@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>两道算法（sorry啦，51回来后一直没更新） | Hexo:yzt238910@163.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="算法题1:md,就是这道题又把我给卡住了，大爷的1234567891011121314151617181920212223&#x2F;&#x2F; 两个超大的字符串相加&#x2F;&#x2F; a: &quot;1112232&quot;&#x2F;&#x2F; b: &quot;5439456&quot;function sum(a, b) &#123;  let len &#x3D; Math.max(a.length, b.length)  a &#x3D; a.pad">
+<meta property="og:type" content="article">
+<meta property="og:title" content="两道算法（sorry啦，51回来后一直没更新）">
+<meta property="og:url" content="http://www.wenchangstreet.com/2024/05/14/may/index.html">
+<meta property="og:site_name" content="Hexo:yzt238910@163.com">
+<meta property="og:description" content="算法题1:md,就是这道题又把我给卡住了，大爷的1234567891011121314151617181920212223&#x2F;&#x2F; 两个超大的字符串相加&#x2F;&#x2F; a: &quot;1112232&quot;&#x2F;&#x2F; b: &quot;5439456&quot;function sum(a, b) &#123;  let len &#x3D; Math.max(a.length, b.length)  a &#x3D; a.pad">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-14T01:54:27.704Z">
+<meta property="article:modified_time" content="2024-05-14T01:54:27.704Z">
+<meta property="article:author" content="yuzhongtao">
+<meta property="article:tag" content="blog,article,backend,frontend">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo:yzt238910@163.com" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo:yzt238910@163.com</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">吉ICP备2022007039号-2</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.wenchangstreet.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-may" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/14/may/" class="article-date">
+  <time class="dt-published" datetime="2024-05-14T01:54:27.704Z" itemprop="datePublished">2024-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      两道算法（sorry啦，51回来后一直没更新）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="算法题1-md-就是这道题又把我给卡住了，大爷的"><a href="#算法题1-md-就是这道题又把我给卡住了，大爷的" class="headerlink" title="算法题1:md,就是这道题又把我给卡住了，大爷的"></a>算法题1:md,就是这道题又把我给卡住了，大爷的</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 两个超大的字符串相加</span></span><br><span class="line"><span class="comment">// a: &quot;1112232&quot;</span></span><br><span class="line"><span class="comment">// b: &quot;5439456&quot;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> len = <span class="title class_">Math</span>.<span class="title function_">max</span>(a.<span class="property">length</span>, b.<span class="property">length</span>)</span><br><span class="line">  a = a.<span class="title function_">padStart</span>(len, <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">  b = b.<span class="title function_">padStart</span>(len, <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> carry = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> result = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = len - <span class="number">1</span>; i &gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="keyword">const</span> sum = (+a[i]) + (+b[i]) + carry</span><br><span class="line">    <span class="keyword">const</span> r = sum % <span class="number">10</span> <span class="comment">// 取余数</span></span><br><span class="line">    carry = <span class="title class_">Math</span>.<span class="title function_">floor</span>(sum / <span class="number">10</span>)</span><br><span class="line">    result = r + result</span><br><span class="line">    <span class="keyword">if</span> (i === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (carry &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	    result = carry + result</span><br><span class="line">	  &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="算法题2：限制并发请求的数量"><a href="#算法题2：限制并发请求的数量" class="headerlink" title="算法题2：限制并发请求的数量"></a>算法题2：限制并发请求的数量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">concorRequest</span>(<span class="params">urls, maxNum</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (urls.<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>([])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> result = []</span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">_request</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> i = index</span><br><span class="line">      <span class="keyword">const</span> url = urls[index]</span><br><span class="line">      index++</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> resp = <span class="keyword">await</span> <span class="title function_">fetch</span>(url)</span><br><span class="line">        result[i] = resp</span><br><span class="line">      &#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">        result[i] = err</span><br><span class="line">      &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        count++</span><br><span class="line">        <span class="keyword">if</span> (count === urls.<span class="property">length</span>) &#123;</span><br><span class="line">          <span class="title function_">resolve</span>(result)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; urls.<span class="property">length</span>) &#123;</span><br><span class="line">          <span class="title function_">_request</span>()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="title class_">Math</span>.<span class="title function_">min</span>(urls.<span class="property">length</span>; maxNum); i++) &#123;</span><br><span class="line">      <span class="title function_">_request</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/05/14/may/" data-id="clw5qprir000dmys8g98acyz2" data-title="两道算法（sorry啦，51回来后一直没更新）" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/04/28/LRU/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">LRU算法/最久未使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/14/may/">两道算法（sorry啦，51回来后一直没更新）</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/28/LRU/">LRU算法/最久未使用</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/22/arrayToTree/">平级数组转换为树形数组的方法</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/22/promise/">promise的几个静态方法</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/19/bind/">手写bind、手写深拷贝</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 yuzhongtao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
