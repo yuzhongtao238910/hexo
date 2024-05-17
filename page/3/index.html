@@ -76,6 +76,74 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-index" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/08/index/" class="article-date">
+  <time class="dt-published" datetime="2024-03-08T01:21:53.865Z" itemprop="datePublished">2024-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/08/index/">几个知识点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="三个知识点：options预检请求，更换镜像地址，修改git-log"><a href="#三个知识点：options预检请求，更换镜像地址，修改git-log" class="headerlink" title="三个知识点：options预检请求，更换镜像地址，修改git-log"></a>三个知识点：options预检请求，更换镜像地址，修改git-log</h2><ul>
+<li><h3 id="options预检请求"><a href="#options预检请求" class="headerlink" title="options预检请求"></a>options预检请求</h3><p>什么时候会发送预检请求？一句话：<strong>在跨域&amp;非简单请求的条件下会发送预检请求</strong></p>
+<ul>
+<li>首先由于浏览器的同源策略，在不跨域的情况下是不会发送options请求的</li>
+<li>简单请求和非简单请求：可以理解为到底是否要对后台的数据做操作，最简单的get请求是通常都是单纯的读取数据，不涉及任何操作，所以是不会发送options请求</li>
+<li>简单请求需要满足以下的条件<ul>
+<li>只使用以下HTTP方法之一：GET、HEAD或POST。</li>
+<li>只使用以下HTTP头部：Accept、Accept-Language、Content-Language、Content-Type。</li>
+<li>Content-Type的值仅限于：application&#x2F;x-www-form-urlencoded、multipart&#x2F;form-data或text&#x2F;plain。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="更换镜像地址"><a href="#更换镜像地址" class="headerlink" title="更换镜像地址"></a>更换镜像地址</h3><p>原有的淘宝镜像已经是不再进行dns的解析了，在阿里云的官方镜像站里面已经给了说明，经过我的测试使用https也可以，我直接用的下面的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry <span class="attr">https</span>:<span class="comment">//registry.npmmirror.com</span></span><br><span class="line">npm chache clean --force 强制清除一下缓存这样子感觉爽一点</span><br></pre></td></tr></table></figure></li>
+</ul>
+<img src="/2024/03/08/index/image-20240308090627886.png" class="" title="image-20240308090627886">
+
+
+
+<ul>
+<li><h3 id="修改git-log"><a href="#修改git-log" class="headerlink" title="修改git-log"></a>修改git-log</h3><p>在进行仓库提交代码的时候，现在大多数项目都配置了husky这个东西，如果里面单纯配置prettier还是，要是配置了eslint等，每次commit都是触发，像我的开发维护的项目就会爆出特别多的eslint的错误，真的不想改，我进行了两次操作，先将sh脚本文件之中的eslint等配置注释掉，然后提交，然后在解开注释，再次提交，这样在log之中就有两次的提交记录，合并代码的时候容易被leader看到不太好</p>
+<ul>
+<li><p>原有方式：git rebase -i HEAD^3	靠，这个命令搞得我特别乱，不推荐</p>
+</li>
+<li><p>新方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">如果你想和最近的两次</span><br><span class="line">git log --oneline 先找倒数第二个提交的hash</span><br><span class="line"></span><br><span class="line">git reset --soft xxx  退回这个版本，但是暂存区是保有变化的，就是说项目没有任何改动</span><br><span class="line">git commit --amend 完事</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/03/08/index/" data-id="clwab578v000cz1s893fje4y3" data-title="几个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-两个算法题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/" class="article-date">
@@ -107,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/" data-id="clw5qpriu000imys809mz9bi0" data-title="两道算法题" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/06/%E4%B8%A4%E4%B8%AA%E7%AE%97%E6%B3%95%E9%A2%98/" data-id="clwab5791000jz1s86611erri" data-title="两道算法题" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -160,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/" data-id="clw5qpriv000jmys8gar02hvj" data-title="三个新发现的api/或者能够称为面试题吗？" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/03/%E4%BB%8A%E6%97%A5%E6%88%91%E5%AD%A6%E4%B9%A0/" data-id="clwab5792000kz1s895wyftdi" data-title="三个新发现的api/或者能够称为面试题吗？" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -203,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/" data-id="clw5qpriw000kmys8217l0i9v" data-title="根据大模型的api流式接口进行请求返回" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/29/%E4%BE%9D%E6%8D%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84api%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%AF%B7%E6%B1%82/" data-id="clwab5793000lz1s851qqgmy9" data-title="根据大模型的api流式接口进行请求返回" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -245,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/" data-id="clw5qpriu000hmys89ya44fjr" data-title="关于hexo建站之后的图片显示问题" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E4%B8%80%E4%B8%AA%E7%AC%91%E8%AF%9D/" data-id="clwab5790000iz1s8h2bs5t8e" data-title="关于hexo建站之后的图片显示问题" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -322,7 +390,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/" data-id="clw5qprix000lmys8azas6vgm" data-title="super-vue-seamless-scroll" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/02/28/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E8%B6%85%E7%BA%A7%E6%BB%9A%E5%8A%A8%E7%9A%84scroll/" data-id="clwab5793000mz1s8a26j9x3k" data-title="super-vue-seamless-scroll" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -370,6 +438,10 @@
       <ul>
         
           <li>
+            <a href="/2024/05/17/heap/">封装一个最小堆</a>
+          </li>
+        
+          <li>
             <a href="/2024/05/14/may/">两道算法（sorry啦，51回来后一直没更新）</a>
           </li>
         
@@ -383,10 +455,6 @@
         
           <li>
             <a href="/2024/04/22/promise/">promise的几个静态方法</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/19/bind/">手写bind、手写深拷贝</a>
           </li>
         
       </ul>

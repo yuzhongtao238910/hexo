@@ -76,6 +76,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-treeDepth" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/10/treeDepth/" class="article-date">
+  <time class="dt-published" datetime="2024-04-10T02:31:50.557Z" itemprop="datePublished">2024-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/10/treeDepth/">求解树的最大深度</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="求解树的最大深度"><a href="#求解树的最大深度" class="headerlink" title="求解树的最大深度"></a>求解树的最大深度</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">maxDepth</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (root === <span class="literal">null</span>) &#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> queue = [root]</span><br><span class="line">  <span class="keyword">let</span> depth = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span>(queue.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> levelSize = queue.<span class="property">length</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; levelSize; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> node = queue.<span class="title function_">shift</span>()</span><br><span class="line">      <span class="keyword">if</span> (node.<span class="property">children</span> &amp;&amp; node.<span class="property">children</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        queue.<span class="title function_">push</span>(...node.<span class="property">children</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    depth++</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> depth</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试数据</span></span><br><span class="line"><span class="keyword">let</span> tree = &#123;  </span><br><span class="line">  <span class="attr">value</span>: <span class="number">1</span>,  </span><br><span class="line">  <span class="attr">children</span>: [  </span><br><span class="line">    &#123;  </span><br><span class="line">      <span class="attr">value</span>: <span class="number">2</span>,  </span><br><span class="line">      <span class="attr">children</span>: [  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">4</span>,  </span><br><span class="line">          <span class="attr">children</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">value</span>: <span class="number">100</span>,</span><br><span class="line">              <span class="attr">children</span>: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]  </span><br><span class="line">        &#125;,  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">5</span>,  </span><br><span class="line">          <span class="attr">children</span>: []  </span><br><span class="line">        &#125;  </span><br><span class="line">      ]  </span><br><span class="line">    &#125;,  </span><br><span class="line">    &#123;  </span><br><span class="line">      <span class="attr">value</span>: <span class="number">3</span>,  </span><br><span class="line">      <span class="attr">children</span>: [  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">6</span>,  </span><br><span class="line">          <span class="attr">children</span>: []  </span><br><span class="line">        &#125;  </span><br><span class="line">      ]  </span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;  </span><br><span class="line">      <span class="attr">value</span>: <span class="number">77</span>,  </span><br><span class="line">      <span class="attr">children</span>: [  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">88</span>,  </span><br><span class="line">          <span class="attr">children</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">value</span>: <span class="string">&#x27;888&#x27;</span>,</span><br><span class="line">              <span class="attr">children</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                  <span class="attr">value</span>: <span class="number">444</span>,</span><br><span class="line">                  <span class="attr">children</span>: []</span><br><span class="line">                &#125;</span><br><span class="line">              ]</span><br><span class="line">            &#125;</span><br><span class="line">          ]  </span><br><span class="line">        &#125;  </span><br><span class="line">      ]  </span><br><span class="line">    &#125;  </span><br><span class="line">  ]  </span><br><span class="line">&#125;;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/04/10/treeDepth/" data-id="clwab578y000gz1s8a8328645" data-title="求解树的最大深度" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-func" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/07/func/" class="article-date">
@@ -105,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/07/func/" data-id="clw5qprim0008mys8ffze3oog" data-title="函数柯里化" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/07/func/" data-id="clwab578i0008z1s8ffks57z8" data-title="函数柯里化" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -155,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="clw5qprhz0000mys86ks5ebxk" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="clwab57850000z1s8e3uh1e7r" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -203,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="clw5qprin0009mys862b27tll" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="clwab578s0009z1s87dzv8vja" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -253,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clw5qpriz000omys85avodgg9" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clwab5795000pz1s89qtxcl8q" data-title="几个设计模式：单例，观察者，发布订阅模式 vue3的mitt包" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -294,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" data-id="clw5qpriy000mmys840qp10sw" data-title="手写call/节流/防抖函数" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/19/%E6%89%8B%E5%86%99call%E8%8A%82%E6%B5%81%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0/" data-id="clwab5794000nz1s8emz3hhjp" data-title="手写call/节流/防抖函数" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -342,7 +382,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/12/hexo/" data-id="clw5qprio000amys845wtgiho" data-title="两个面试题fetch的请求时间/重发请求" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/12/hexo/" data-id="clwab578v000bz1s8bjaietr1" data-title="两个面试题fetch的请求时间/重发请求" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -413,7 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="clw5qpriz000nmys84zqj14zq" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/12/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="clwab5795000oz1s8ec2aagm5" data-title="关于js之中的数据类型的转换的原则" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -462,7 +502,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/10/another/" data-id="clw5qpri90003mys8e8dt2htx" data-title="关于面试" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/10/another/" data-id="clwab578d0003z1s857pjaxc9" data-title="关于面试" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -503,75 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/09/cancel/" data-id="clw5qprik0006mys8590u118k" data-title="关于取消请求和react native的环境配置的两个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-index" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/08/index/" class="article-date">
-  <time class="dt-published" datetime="2024-03-08T01:21:53.865Z" itemprop="datePublished">2024-03-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/08/index/">几个知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="三个知识点：options预检请求，更换镜像地址，修改git-log"><a href="#三个知识点：options预检请求，更换镜像地址，修改git-log" class="headerlink" title="三个知识点：options预检请求，更换镜像地址，修改git-log"></a>三个知识点：options预检请求，更换镜像地址，修改git-log</h2><ul>
-<li><h3 id="options预检请求"><a href="#options预检请求" class="headerlink" title="options预检请求"></a>options预检请求</h3><p>什么时候会发送预检请求？一句话：<strong>在跨域&amp;非简单请求的条件下会发送预检请求</strong></p>
-<ul>
-<li>首先由于浏览器的同源策略，在不跨域的情况下是不会发送options请求的</li>
-<li>简单请求和非简单请求：可以理解为到底是否要对后台的数据做操作，最简单的get请求是通常都是单纯的读取数据，不涉及任何操作，所以是不会发送options请求</li>
-<li>简单请求需要满足以下的条件<ul>
-<li>只使用以下HTTP方法之一：GET、HEAD或POST。</li>
-<li>只使用以下HTTP头部：Accept、Accept-Language、Content-Language、Content-Type。</li>
-<li>Content-Type的值仅限于：application&#x2F;x-www-form-urlencoded、multipart&#x2F;form-data或text&#x2F;plain。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><h3 id="更换镜像地址"><a href="#更换镜像地址" class="headerlink" title="更换镜像地址"></a>更换镜像地址</h3><p>原有的淘宝镜像已经是不再进行dns的解析了，在阿里云的官方镜像站里面已经给了说明，经过我的测试使用https也可以，我直接用的下面的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry <span class="attr">https</span>:<span class="comment">//registry.npmmirror.com</span></span><br><span class="line">npm chache clean --force 强制清除一下缓存这样子感觉爽一点</span><br></pre></td></tr></table></figure></li>
-</ul>
-<img src="/2024/03/08/index/image-20240308090627886.png" class="" title="image-20240308090627886">
-
-
-
-<ul>
-<li><h3 id="修改git-log"><a href="#修改git-log" class="headerlink" title="修改git-log"></a>修改git-log</h3><p>在进行仓库提交代码的时候，现在大多数项目都配置了husky这个东西，如果里面单纯配置prettier还是，要是配置了eslint等，每次commit都是触发，像我的开发维护的项目就会爆出特别多的eslint的错误，真的不想改，我进行了两次操作，先将sh脚本文件之中的eslint等配置注释掉，然后提交，然后在解开注释，再次提交，这样在log之中就有两次的提交记录，合并代码的时候容易被leader看到不太好</p>
-<ul>
-<li><p>原有方式：git rebase -i HEAD^3	靠，这个命令搞得我特别乱，不推荐</p>
-</li>
-<li><p>新方式：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">如果你想和最近的两次</span><br><span class="line">git log --oneline 先找倒数第二个提交的hash</span><br><span class="line"></span><br><span class="line">git reset --soft xxx  退回这个版本，但是暂存区是保有变化的，就是说项目没有任何改动</span><br><span class="line">git commit --amend 完事</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/08/index/" data-id="clw5qprip000bmys8bey0gvua" data-title="几个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/03/09/cancel/" data-id="clwab578g0006z1s84i3h9go1" data-title="关于取消请求和react native的环境配置的两个知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -619,6 +591,10 @@
       <ul>
         
           <li>
+            <a href="/2024/05/17/heap/">封装一个最小堆</a>
+          </li>
+        
+          <li>
             <a href="/2024/05/14/may/">两道算法（sorry啦，51回来后一直没更新）</a>
           </li>
         
@@ -632,10 +608,6 @@
         
           <li>
             <a href="/2024/04/22/promise/">promise的几个静态方法</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/19/bind/">手写bind、手写深拷贝</a>
           </li>
         
       </ul>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>封装一个最小堆 | Hexo:yzt238910@163.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="手写封装一个最小的堆1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991">
+<meta property="og:type" content="article">
+<meta property="og:title" content="封装一个最小堆">
+<meta property="og:url" content="http://www.wenchangstreet.com/2024/05/17/heap/index.html">
+<meta property="og:site_name" content="Hexo:yzt238910@163.com">
+<meta property="og:description" content="手写封装一个最小的堆1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-17T06:37:28.846Z">
+<meta property="article:modified_time" content="2024-05-17T06:37:28.846Z">
+<meta property="article:author" content="yuzhongtao">
+<meta property="article:tag" content="blog,article,backend,frontend">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo:yzt238910@163.com" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo:yzt238910@163.com</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">吉ICP备2022007039号-2</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.wenchangstreet.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-heap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/17/heap/" class="article-date">
+  <time class="dt-published" datetime="2024-05-17T06:37:28.846Z" itemprop="datePublished">2024-05-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      封装一个最小堆
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="手写封装一个最小的堆"><a href="#手写封装一个最小的堆" class="headerlink" title="手写封装一个最小的堆"></a>手写封装一个最小的堆</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> heap = []</span><br><span class="line"><span class="comment">// 增加新元素</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">push</span>(<span class="params">heap, node</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> index = heap.<span class="property">length</span></span><br><span class="line">  heap.<span class="title function_">push</span>(node)</span><br><span class="line">  <span class="title function_">siftUp</span>(heap, node, index)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 弹出堆的顶部的元素</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">pop</span>(<span class="params">heap</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> first = heap[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">let</span> last = heap.<span class="title function_">at</span>(-<span class="number">1</span>)</span><br><span class="line">  <span class="keyword">if</span> (first !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> last = heap.<span class="title function_">pop</span>()</span><br><span class="line">    <span class="keyword">if</span> (first !== last) &#123;</span><br><span class="line">      heap[<span class="number">0</span>] = last</span><br><span class="line">      <span class="title function_">siftDown</span>(heap, last, <span class="number">0</span>)</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> first</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 返回堆的顶部元素</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">peek</span>(<span class="params">heap</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> first = heap[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">if</span> (first) &#123;</span><br><span class="line">    <span class="keyword">return</span> first</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 向上sift，保证堆的要求</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">siftUp</span>(<span class="params">heap, node, i</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> index = i</span><br><span class="line">  <span class="comment">// 决定是要需要往前面移动</span></span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="comment">// 0 1 2 3 4</span></span><br><span class="line">    <span class="keyword">let</span> parentIndex = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(index / <span class="number">2</span>) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> parent = heap[parentIndex]</span><br><span class="line">    <span class="keyword">if</span> (parent &amp;&amp; <span class="title function_">compare</span>(parent, node) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      heap[index] = parent</span><br><span class="line">      heap[parentIndex] = node</span><br><span class="line">      index = parentIndex</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 向下，保证堆的要求</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">siftDown</span>(<span class="params">heap, node, i</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> index = i</span><br><span class="line">  <span class="keyword">let</span> length = heap.<span class="property">length</span></span><br><span class="line">  <span class="keyword">while</span>(index &lt; length) &#123;</span><br><span class="line">    <span class="keyword">let</span> leftIndex = <span class="number">2</span> * index + <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> rightIndex = leftIndex + <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> left = heap[leftIndex]</span><br><span class="line">    <span class="keyword">let</span> right = heap[rightIndex]</span><br><span class="line">    <span class="keyword">if</span> (left &amp;&amp; <span class="title function_">compare</span>(left, node) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (right &amp;&amp; <span class="title function_">compare</span>(right, left) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// left 小</span></span><br><span class="line">        heap[rightIndex] = node</span><br><span class="line">        heap[index] = right</span><br><span class="line">        index = rightIndex</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// right 小</span></span><br><span class="line">        heap[leftIndex] = node</span><br><span class="line">        heap[index] = left</span><br><span class="line">        index = leftIndex</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (right &amp;&amp; <span class="title function_">compare</span>(right, node) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      heap[rightIndex] = node</span><br><span class="line">      heap[index] = right</span><br><span class="line">      index = rightIndex</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 比较 堆之中的元素的大小</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">compare</span>(<span class="params">node1, node2</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> diff = node1.<span class="property">sortIndex</span> - node2.<span class="property">sortIndex</span></span><br><span class="line">  <span class="keyword">return</span> diff === <span class="number">0</span> ? (node1.<span class="property">index</span> - node2.<span class="property">index</span>) : diff</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> id = <span class="number">1</span></span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">3</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// debugger</span></span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">5</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">6</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">4</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 第2个被称为一个任务</span></span><br><span class="line"><span class="comment">// 数字小的在顶部</span></span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++, <span class="comment">// id的作用是如果sortIndex一样在使用id比较</span></span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">1</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">2</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">7</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">pop</span>(heap)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(heap)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/05/17/heap/" data-id="clwab578t000az1s8efaqhak6" data-title="封装一个最小堆" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/05/14/may/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">两道算法（sorry啦，51回来后一直没更新）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/17/heap/">封装一个最小堆</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/14/may/">两道算法（sorry啦，51回来后一直没更新）</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/28/LRU/">LRU算法/最久未使用</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/22/arrayToTree/">平级数组转换为树形数组的方法</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/22/promise/">promise的几个静态方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 yuzhongtao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
