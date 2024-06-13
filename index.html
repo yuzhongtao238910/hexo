@@ -76,6 +76,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-base" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/13/base/" class="article-date">
+  <time class="dt-published" datetime="2024-06-13T08:39:25.526Z" itemprop="datePublished">2024-06-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/06/13/base/">一些基础的知识</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>这都是最开始学习前端的知识，真的忘了，很想吐槽，不是说咱没写代码，那复杂的代码过1个月我基本细节那还能记得住泥，能知道个大概就不错了，看我github仓库，看配置也好，看什么也好，你面试几分钟能看懂，那我不是白写几天了，我去，真的晕！！！</p>
+<h3 id="1-关于伪类和伪元素"><a href="#1-关于伪类和伪元素" class="headerlink" title="1- 关于伪类和伪元素"></a>1- 关于伪类和伪元素</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1- 伪类选择器：就是:hover 这些呗 ：not(selector)</span><br><span class="line">2- 伪元素选择器：就是::before ::after这些</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-关于清除浮动的几种方法"><a href="#2-关于清除浮动的几种方法" class="headerlink" title="2- 关于清除浮动的几种方法"></a>2- 关于清除浮动的几种方法</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1- 在父元素上面使用：overflow: hidden / auto</span><br><span class="line"></span><br><span class="line">2- 在所有浮动元素的最后增加一个item <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;clearfix&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> .clearfix &#123;</span><br><span class="line">			clear: both;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">3- .father::after &#123;</span><br><span class="line">			content: &quot;&quot;;</span><br><span class="line">			clear: both;</span><br><span class="line">			display: block;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-浮动产生的原因"><a href="#3-浮动产生的原因" class="headerlink" title="3- 浮动产生的原因"></a>3- 浮动产生的原因</h3><p>a) 原因：在文档流中，父元素的高度默认是被子元素撑开的，即子元素有多高，父元素就有多高。但是，当为子元素设置浮动后，子元素会脱离文档流，导致它们不再占据父元素中的空间，进而无法撑起父元素的高度，使得父元素的高度塌陷。<br>b）后果：父元素高度塌陷后，会导致父元素下的所有元素都会向上移动，这样会导致页面布局混乱。因为浮动元素已经脱离了文档流，所以它们不会受到父元素高度的限制，可能会与其他元素重叠或覆盖。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><ul>
+<li>浮动会使元素脱离文档流。</li>
+<li>静态定位和相对定位不会使元素脱离文档流。</li>
+<li>绝对定位、固定定位和粘滞定位（在达到阈值后）会使元素脱离文档流。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/06/13/base/" data-id="clxd0dx4k0006lns89elx1jgb" data-title="一些基础的知识" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-info1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/06/13/info1/" class="article-date">
@@ -112,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/06/13/info1/" data-id="clxcza9u2000flcs8hp6wa4lc" data-title="新发布的自动化部署教程" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/06/13/info1/" data-id="clxd0dx4u000glns83pho4sgj" data-title="新发布的自动化部署教程" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -183,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/06/07/info/" data-id="clxcza9u1000elcs8em810ucp" data-title="关于一些很琐碎的知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/06/07/info/" data-id="clxd0dx4t000flns8771h0mn3" data-title="关于一些很琐碎的知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -241,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/06/05/6/" data-id="clxcza9tl0001lcs84dej3zbl" data-title="2024年06月 关于面试之中两个很简单的小点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/06/05/6/" data-id="clxd0dx4d0001lns8b2em650v" data-title="2024年06月 关于面试之中两个很简单的小点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -281,7 +330,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/05/17/heap/" data-id="clxcza9tz000blcs8gqiccujc" data-title="封装一个最小堆" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/05/17/heap/" data-id="clxd0dx4q000clns8d9flg4s0" data-title="封装一个最小堆" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -323,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/05/14/may/" data-id="clxcza9u4000hlcs86opb3i02" data-title="两道算法（sorry啦，51回来后一直没更新）" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/05/14/may/" data-id="clxd0dx4v000ilns87rzifms4" data-title="两道算法（sorry啦，51回来后一直没更新）" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -363,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/28/LRU/" data-id="clxcza9tn0002lcs80zo01cku" data-title="LRU算法/最久未使用" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/28/LRU/" data-id="clxd0dx4f0002lns86ux6esan" data-title="LRU算法/最久未使用" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -403,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/22/arrayToTree/" data-id="clxcza9tr0005lcs8ghtae0rf" data-title="平级数组转换为树形数组的方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/22/arrayToTree/" data-id="clxd0dx4j0005lns8hnos26h1" data-title="平级数组转换为树形数组的方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -443,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/22/promise/" data-id="clxcza9u4000ilcs8gesf8v85" data-title="promise的几个静态方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/22/promise/" data-id="clxd0dx4w000jlns806f0cmbs" data-title="promise的几个静态方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -485,49 +534,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/19/bind/" data-id="clxcza9ts0006lcs8dhe20p07" data-title="手写bind、手写深拷贝" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-README" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/14/README/" class="article-date">
-  <time class="dt-published" datetime="2024-04-14T11:56:09.733Z" itemprop="datePublished">2024-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/14/README/">关于react的工程化配置，webpack版本，亮点如下</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="webpack-react的配置"><a href="#webpack-react的配置" class="headerlink" title="webpack-react的配置"></a>webpack-react的配置</h1><h3 id="https-github-com-yuzhongtao238910-react-webpack"><a href="#https-github-com-yuzhongtao238910-react-webpack" class="headerlink" title="https://github.com/yuzhongtao238910/react-webpack"></a><a target="_blank" rel="noopener" href="https://github.com/yuzhongtao238910/react-webpack">https://github.com/yuzhongtao238910/react-webpack</a></h3><h3 id="亮点"><a href="#亮点" class="headerlink" title="亮点"></a>亮点</h3><p>1- 自定义一个简单的loader，用于清除console.log</p>
-<p>2- 自定义一个简单的plugin，用于将runtime的文件直接保存到html里面减少发送请求</p>
-<p>3- 针对第2条需要注意output里面的publicPath的配置问题</p>
-<p>4- 其他的配置均大部分完善，针对静态资源的，css，js的均都已经配置</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/14/README/" data-id="clxcza9to0003lcs8fqhhflxm" data-title="关于react的工程化配置，webpack版本，亮点如下" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/19/bind/" data-id="clxd0dx4l0007lns8dusnd8rz" data-title="手写bind、手写深拷贝" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -575,6 +582,10 @@
       <ul>
         
           <li>
+            <a href="/2024/06/13/base/">一些基础的知识</a>
+          </li>
+        
+          <li>
             <a href="/2024/06/13/info1/">新发布的自动化部署教程</a>
           </li>
         
@@ -588,10 +599,6 @@
         
           <li>
             <a href="/2024/05/17/heap/">封装一个最小堆</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/14/may/">两道算法（sorry啦，51回来后一直没更新）</a>
           </li>
         
       </ul>
