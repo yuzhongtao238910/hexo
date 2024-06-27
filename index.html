@@ -76,6 +76,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-seven" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/27/seven/" class="article-date">
+  <time class="dt-published" datetime="2024-06-27T01:01:27.906Z" itemprop="datePublished">2024-06-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/06/27/seven/">面试点的记录和总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="1-一道场景题目"><a href="#1-一道场景题目" class="headerlink" title="1- 一道场景题目"></a>1- 一道场景题目</h3><p>前端怎么不借助后端实现，当用户进入一个页面的时候，有80%的用户进入的是a.html，有20%的用户进入的是b.html，前端只靠自己该是如何实现啊？</p>
+<ul>
+<li>利用随机数的原理，可以生成一个0-1之间的随机数，然后小于0.8的进入到a.html,大于0.8的进入到b.html</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">randomRedirect</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> random = <span class="title class_">Math</span>.<span class="title function_">random</span>()</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">if</span> (random &lt;= <span class="number">0.8</span>) &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = <span class="string">&quot;a.html&quot;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = <span class="string">&quot;b.html&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-如何生成一个闭区间的随机数，给你一个min和max，如何生成在这个两个之间的闭区间的随机数？"><a href="#2-如何生成一个闭区间的随机数，给你一个min和max，如何生成在这个两个之间的闭区间的随机数？" class="headerlink" title="2- 如何生成一个闭区间的随机数，给你一个min和max，如何生成在这个两个之间的闭区间的随机数？"></a>2- 如何生成一个闭区间的随机数，给你一个min和max，如何生成在这个两个之间的闭区间的随机数？</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getRandomIntClosed</span>(<span class="params">min, max</span>) &#123;  </span><br><span class="line">  min = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(min); <span class="comment">// 确保min是整数，并且如果min是小数则向上取整  </span></span><br><span class="line">  max = <span class="title class_">Math</span>.<span class="title function_">floor</span>(max); <span class="comment">// 确保max是整数，并且如果max是小数则向下取整  </span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * (max - min + <span class="number">1</span>)) + min; <span class="comment">// 生成闭区间随机数  </span></span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 使用示例  </span></span><br><span class="line"><span class="keyword">const</span> randomNum = <span class="title function_">getRandomIntClosed</span>(<span class="number">5</span>, <span class="number">10</span>); <span class="comment">// 生成一个5到10之间的闭区间随机数  </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(randomNum); <span class="comment">// 输出可能是5, 6, 7, 8, 9, 或 10</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-关于css的问题，css巧劲–利用flex-margin实现各类需求场景的小技巧"><a href="#3-关于css的问题，css巧劲–利用flex-margin实现各类需求场景的小技巧" class="headerlink" title="3- 关于css的问题，css巧劲–利用flex+margin实现各类需求场景的小技巧"></a>3- 关于css的问题，css巧劲–利用flex+margin实现各类需求场景的小技巧</h3><ul>
+<li>原文链接：<a target="_blank" rel="noopener" href="https://article.juejin.cn/post/7231152541404430397">https://article.juejin.cn/post/7231152541404430397</a></li>
+<li>在 <code>flex</code> 布局中，为子元素设置 <code>margin: auto</code> 后，<code>父元素的剩余空间</code>都会被分给该子元素的margin值中 ， 此时我们就可以利用这个特性利用<code>flex + margin</code>的方式实现一些特殊的业务场景</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  	* &#123;</span></span><br><span class="line"><span class="language-css">  	  <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="language-css">  	&#125;</span></span><br><span class="line"><span class="language-css">  	<span class="selector-class">.box</span> &#123;  </span></span><br><span class="line"><span class="language-css">  	  <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">  	  <span class="attribute">width</span>: <span class="number">300px</span>;  </span></span><br><span class="line"><span class="language-css">  	  <span class="attribute">height</span>: <span class="number">300px</span>;  </span></span><br><span class="line"><span class="language-css">  	  <span class="attribute">border</span>: <span class="number">3px</span> solid red;  </span></span><br><span class="line"><span class="language-css">  	  <span class="attribute">padding</span>: <span class="number">10px</span>;  </span></span><br><span class="line"><span class="language-css">  	  <span class="attribute">justify-content</span>: space-between;</span></span><br><span class="line"><span class="language-css">  	&#125;  </span></span><br><span class="line"><span class="language-css">  	  </span></span><br><span class="line"><span class="language-css">  	<span class="selector-class">.item</span> &#123;  </span></span><br><span class="line"><span class="language-css">  	  <span class="comment">/* 为子元素设置margin:auto; */</span></span></span><br><span class="line"><span class="language-css">  	  <span class="attribute">width</span>: <span class="number">50px</span>;  </span></span><br><span class="line"><span class="language-css">  	  <span class="attribute">height</span>: <span class="number">50px</span>;  </span></span><br><span class="line"><span class="language-css">  	  <span class="attribute">border</span>: <span class="number">1px</span> solid gray;</span></span><br><span class="line"><span class="language-css">  	&#125;</span></span><br><span class="line"><span class="language-css">  	<span class="selector-class">.item</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">2</span>) &#123;  </span></span><br><span class="line"><span class="language-css">      <span class="attribute">margin-right</span>: auto;  </span></span><br><span class="line"><span class="language-css">  	&#125;</span></span><br><span class="line"><span class="language-css">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>1</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">style</span>=<span class="string">&quot;background-color: navajowhite;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">style</span>=<span class="string">&quot;background-color: navajowhite;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">style</span>=<span class="string">&quot;background-color: navajowhite;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-关于简历下一步的修改方向"><a href="#4-关于简历下一步的修改方向" class="headerlink" title="4- 关于简历下一步的修改方向"></a>4- 关于简历下一步的修改方向</h3><ul>
+<li>第一个项目修改为数据智能采集网关</li>
+<li>个人博客去掉</li>
+<li>b站的视频挂上</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/06/27/seven/" data-id="clxwk70dt000kuks87n433664" data-title="面试点的记录和总结" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-base" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/06/13/base/" class="article-date">
@@ -113,7 +176,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/06/13/base/" data-id="clxd0dx4k0006lns89elx1jgb" data-title="一些基础的知识" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/06/13/base/" data-id="clxwk70dg0006uks80nhr5r6g" data-title="一些基础的知识" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -161,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/06/13/info1/" data-id="clxd0dx4u000glns83pho4sgj" data-title="新发布的自动化部署教程" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/06/13/info1/" data-id="clxwk70dq000guks8c8l20aas" data-title="新发布的自动化部署教程" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -232,7 +295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/06/07/info/" data-id="clxd0dx4t000flns8771h0mn3" data-title="关于一些很琐碎的知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/06/07/info/" data-id="clxwk70dp000fuks89dwcc2rl" data-title="关于一些很琐碎的知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -290,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/06/05/6/" data-id="clxd0dx4d0001lns8b2em650v" data-title="2024年06月 关于面试之中两个很简单的小点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/06/05/6/" data-id="clxwk70d80001uks81xo37ekb" data-title="2024年06月 关于面试之中两个很简单的小点" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -330,7 +393,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/05/17/heap/" data-id="clxd0dx4q000clns8d9flg4s0" data-title="封装一个最小堆" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/05/17/heap/" data-id="clxwk70dn000cuks84y6832li" data-title="封装一个最小堆" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -372,7 +435,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/05/14/may/" data-id="clxd0dx4v000ilns87rzifms4" data-title="两道算法（sorry啦，51回来后一直没更新）" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/05/14/may/" data-id="clxwk70ds000iuks8elnhgd3r" data-title="两道算法（sorry啦，51回来后一直没更新）" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -412,7 +475,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/28/LRU/" data-id="clxd0dx4f0002lns86ux6esan" data-title="LRU算法/最久未使用" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/28/LRU/" data-id="clxwk70da0002uks83biv7w84" data-title="LRU算法/最久未使用" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -452,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/22/arrayToTree/" data-id="clxd0dx4j0005lns8hnos26h1" data-title="平级数组转换为树形数组的方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/22/arrayToTree/" data-id="clxwk70df0005uks84hg32kx2" data-title="平级数组转换为树形数组的方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -492,49 +555,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/22/promise/" data-id="clxd0dx4w000jlns806f0cmbs" data-title="promise的几个静态方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-bind" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/19/bind/" class="article-date">
-  <time class="dt-published" datetime="2024-04-19T01:12:08.756Z" itemprop="datePublished">2024-04-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/19/bind/">手写bind、手写深拷贝</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="手写bind"><a href="#手写bind" class="headerlink" title="手写bind"></a>手写bind</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">myBind</span> = <span class="keyword">function</span> (<span class="params">...args</span>) &#123;</span><br><span class="line"><span class="keyword">let</span> that = <span class="variable language_">this</span></span><br><span class="line"><span class="keyword">let</span> obj = args[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">let</span> aa = args.<span class="title function_">slice</span>(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> call = <span class="title class_">Symbol</span>(<span class="string">&#x27;call&#x27;</span>)</span><br><span class="line">  obj[call] = that</span><br><span class="line">  <span class="keyword">const</span> res = obj[call](...aa)</span><br><span class="line">  <span class="keyword">delete</span> obj[call]</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">  <span class="comment">// return that.call(obj, ...aa)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">a, b, c</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a, b, c);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;this&#x27;</span>, <span class="variable language_">this</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;我是原函数的返回值&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bindResult = test.<span class="title function_">myBind</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">&#125;, <span class="number">7</span>, <span class="number">77</span>, <span class="number">777</span>)</span><br><span class="line"><span class="title function_">bindResult</span>()</span><br></pre></td></tr></table></figure>
-
-<h3 id="手写深拷贝"><a href="#手写深拷贝" class="headerlink" title="手写深拷贝"></a>手写深拷贝</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">deepMyCopy</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span> || <span class="keyword">typeof</span> obj === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="title class_">Array</span>.<span class="title function_">isArray</span>(obj)) &#123;</span><br><span class="line">    <span class="keyword">let</span> myCopy = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; obj.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      myCopy[i] = <span class="title function_">deepMyCopy</span>(obj[i])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> myCopy</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> myCopy = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">   myCopy[key] = <span class="title function_">deepMyCopy</span>(obj[key])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> myCopy</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/19/bind/" data-id="clxd0dx4l0007lns8dusnd8rz" data-title="手写bind、手写深拷贝" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/22/promise/" data-id="clxwk70dt000juks884c9crwq" data-title="promise的几个静态方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -550,7 +571,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -582,6 +603,10 @@
       <ul>
         
           <li>
+            <a href="/2024/06/27/seven/">面试点的记录和总结</a>
+          </li>
+        
+          <li>
             <a href="/2024/06/13/base/">一些基础的知识</a>
           </li>
         
@@ -595,10 +620,6 @@
         
           <li>
             <a href="/2024/06/05/6/">2024年06月 关于面试之中两个很简单的小点</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/17/heap/">封装一个最小堆</a>
           </li>
         
       </ul>
