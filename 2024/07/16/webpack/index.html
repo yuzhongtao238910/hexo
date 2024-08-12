@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>webpack的动态加载脚本的方案以及合rollup的treeshaking的对比 | Hexo:yzt238910@163.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="webpack的动态加载脚本的方案以及合rollup的treeshaking的对比下面是webpack的动态加载脚本的方案,webpack其实在动态分割的时候，是手动创建了script标签，并且在加载成功之后将script又删除，因为这样保持了html的文件的统一性，但是浏览器自身是有缓存的，就是的即使这个标签被删除，但是文件的内容依旧是被加载并且缓存，下面是我写的案例 webpack里面的imp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack的动态加载脚本的方案以及合rollup的treeshaking的对比">
+<meta property="og:url" content="http://www.wenchangstreet.com/2024/07/16/webpack/index.html">
+<meta property="og:site_name" content="Hexo:yzt238910@163.com">
+<meta property="og:description" content="webpack的动态加载脚本的方案以及合rollup的treeshaking的对比下面是webpack的动态加载脚本的方案,webpack其实在动态分割的时候，是手动创建了script标签，并且在加载成功之后将script又删除，因为这样保持了html的文件的统一性，但是浏览器自身是有缓存的，就是的即使这个标签被删除，但是文件的内容依旧是被加载并且缓存，下面是我写的案例 webpack里面的imp">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-16T11:04:58.404Z">
+<meta property="article:modified_time" content="2024-07-16T11:04:58.404Z">
+<meta property="article:author" content="yuzhongtao">
+<meta property="article:tag" content="blog,article,backend,frontend">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo:yzt238910@163.com" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo:yzt238910@163.com</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">吉ICP备2022007039号-2</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.wenchangstreet.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-webpack" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/16/webpack/" class="article-date">
+  <time class="dt-published" datetime="2024-07-16T11:04:58.404Z" itemprop="datePublished">2024-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      webpack的动态加载脚本的方案以及合rollup的treeshaking的对比
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="webpack的动态加载脚本的方案以及合rollup的treeshaking的对比"><a href="#webpack的动态加载脚本的方案以及合rollup的treeshaking的对比" class="headerlink" title="webpack的动态加载脚本的方案以及合rollup的treeshaking的对比"></a>webpack的动态加载脚本的方案以及合rollup的treeshaking的对比</h3><p>下面是webpack的动态加载脚本的方案,webpack其实在动态分割的时候，是手动创建了script标签，并且在加载成功之后将script又删除，因为这样保持了html的文件的统一性，但是浏览器自身是有缓存的，就是的即使这个标签被删除，但是文件的内容依旧是被加载并且缓存，下面是我写的案例</p>
+<p>webpack里面的import方法合es module的import方法是不一样的，webpack目前还没有真正的支持打包出来es的，官网是有实验性的属性可以测试</p>
+<p>但是如果使用rollup并且打包格式为es的话，那么就是完完全全的基于es module的格式来实现代码分割，异步加载的</p>
+<p>当然异步加载的方案也可以自己写一个脚本，手动创建script标签来实现的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span> <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn1&quot;</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">btn.<span class="property">onclick</span> = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 设置script的源地址（src），这里以某个外部JS文件为例</span></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 注意：这里应该替换成你实际的JS文件URL</span></span></span><br><span class="line"><span class="language-javascript">  script.<span class="property">src</span> = <span class="string">&#x27;http://127.0.0.1:5501/dist/1.js&#x27;</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 设置script的其他属性（可选）</span></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 例如，设置async或defer属性来控制脚本的加载和执行方式</span></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// script.async = true // 异步加载脚本，不会阻塞页面解析</span></span></span><br><span class="line"><span class="language-javascript">  script.<span class="property">defer</span> = <span class="literal">true</span> <span class="comment">// 延迟执行脚本，直到文档完全解析和显示之后</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 将script元素插入到head中</span></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 注意：如果文档已经加载完成，直接插入到head可能会导致样式重绘等问题</span></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 更好的做法可能是将其添加到body的末尾</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> head = <span class="variable language_">document</span>.<span class="property">head</span> || <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;head&#x27;</span>)[<span class="number">0</span>]</span></span><br><span class="line"><span class="language-javascript">  head.<span class="title function_">appendChild</span>(script)</span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// 如果需要，你可以在这里监听script的加载状态</span></span></span><br><span class="line"><span class="language-javascript">  script.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">  	<span class="comment">// console.log(&#x27;Script loaded and executed.&#x27;)</span></span></span><br><span class="line"><span class="language-javascript">  	<span class="comment">// const res = aa(1, 2)</span></span></span><br><span class="line"><span class="language-javascript">  	<span class="comment">// console.log(res, 33)</span></span></span><br><span class="line"><span class="language-javascript">  	script.<span class="property">parentNode</span>.<span class="title function_">removeChild</span>(script)</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript">btn1.<span class="property">onclick</span> = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> res = <span class="title function_">aa</span>(<span class="number">22</span>, <span class="number">11</span>)</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/07/16/webpack/" data-id="clzqt83wd000rnps86ch3e1bn" data-title="webpack的动态加载脚本的方案以及合rollup的treeshaking的对比" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/07/22/compress/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          前端图片压缩的算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/07/11/51/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">两个东西分享</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">八月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/08/12/tree/">基于最新的tree图的位置的算法</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/12/%E6%96%B0%E9%A2%96%E5%BE%97react/">react后台正式来袭</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/22/compress/">前端图片压缩的算法</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/16/webpack/">webpack的动态加载脚本的方案以及合rollup的treeshaking的对比</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/11/51/">两个东西分享</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 yuzhongtao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

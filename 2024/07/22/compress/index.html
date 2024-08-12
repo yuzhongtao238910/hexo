@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>前端图片压缩的算法 | Hexo:yzt238910@163.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前端图片压缩的算法但其实是只支持jpg的格式啊123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960class CompressImg &#123;  &#x2F;**   * file: File   * quality: number">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端图片压缩的算法">
+<meta property="og:url" content="http://www.wenchangstreet.com/2024/07/22/compress/index.html">
+<meta property="og:site_name" content="Hexo:yzt238910@163.com">
+<meta property="og:description" content="前端图片压缩的算法但其实是只支持jpg的格式啊123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960class CompressImg &#123;  &#x2F;**   * file: File   * quality: number">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-22T02:30:25.064Z">
+<meta property="article:modified_time" content="2024-07-22T02:30:25.064Z">
+<meta property="article:author" content="yuzhongtao">
+<meta property="article:tag" content="blog,article,backend,frontend">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo:yzt238910@163.com" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo:yzt238910@163.com</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">吉ICP备2022007039号-2</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.wenchangstreet.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-compress" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/22/compress/" class="article-date">
+  <time class="dt-published" datetime="2024-07-22T02:30:25.064Z" itemprop="datePublished">2024-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      前端图片压缩的算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="前端图片压缩的算法"><a href="#前端图片压缩的算法" class="headerlink" title="前端图片压缩的算法"></a>前端图片压缩的算法</h3><h4 id="但其实是只支持jpg的格式啊"><a href="#但其实是只支持jpg的格式啊" class="headerlink" title="但其实是只支持jpg的格式啊"></a>但其实是只支持jpg的格式啊</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CompressImg</span> &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * file: File</span></span><br><span class="line"><span class="comment">   * quality: number</span></span><br><span class="line"><span class="comment">   * success: (base64: string) =&gt; void</span></span><br><span class="line"><span class="comment">  */</span> </span><br><span class="line">  fileReader = <span class="keyword">new</span> <span class="title class_">FileReader</span>()</span><br><span class="line">  options</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">options</span> = options</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">createBase64</span>()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">createBase64</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">fileReader</span>.<span class="property">onload</span> = <span class="function"><span class="params">evt</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> oldImg = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;img&quot;</span>)</span><br><span class="line">    oldImg.<span class="property">src</span> = evt.<span class="property">target</span>.<span class="property">result</span></span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(oldImg)</span><br><span class="line">    <span class="comment">// console.log(evt.target)</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">compress</span>(evt.<span class="property">target</span>.<span class="property">result</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">fileReader</span>.<span class="title function_">readAsDataURL</span>(<span class="variable language_">this</span>.<span class="property">options</span>.<span class="property">file</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">compress</span>(<span class="params">url</span>) &#123;</span><br><span class="line">    <span class="comment">// 图像的大小</span></span><br><span class="line">    <span class="keyword">const</span> canvas = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;canvas&quot;</span>)</span><br><span class="line">    <span class="comment">// document.body.appendChild(canvas)</span></span><br><span class="line">    <span class="keyword">const</span> ctx = canvas.<span class="title function_">getContext</span>(<span class="string">&quot;2d&quot;</span>)</span><br><span class="line">    <span class="keyword">const</span> img = <span class="keyword">new</span> <span class="title class_">Image</span>()</span><br><span class="line">    img.<span class="property">src</span> = url</span><br><span class="line">    img.<span class="property">onload</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      canvas.<span class="property">width</span> = img.<span class="property">width</span></span><br><span class="line">      canvas.<span class="property">height</span> = img.<span class="property">height</span></span><br><span class="line">      <span class="comment">// console.log(img.width, img.height)</span></span><br><span class="line">      ctx.<span class="title function_">drawImage</span>(img, <span class="number">0</span>, <span class="number">0</span>, img.<span class="property">width</span>, img.<span class="property">height</span>)   </span><br><span class="line">      <span class="comment">// 只有jpeg可以压缩</span></span><br><span class="line">      <span class="keyword">const</span> base64 = canvas.<span class="title function_">toDataURL</span>(<span class="string">&quot;image/jpeg&quot;</span>, <span class="number">0.5</span>)</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(base64.<span class="property">length</span> / <span class="number">1024</span>, <span class="number">4777</span>)</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">options</span>.<span class="title function_">success</span>(base64)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> file = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;#file&quot;</span>)</span><br><span class="line">file.<span class="title function_">addEventListener</span>(<span class="string">&quot;change&quot;</span>, <span class="function"><span class="params">evt</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> target = evt.<span class="property">target</span></span><br><span class="line">  <span class="keyword">const</span> fileObj = target.<span class="property">files</span>?.[<span class="number">0</span>]</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(fileObj)</span><br><span class="line">  <span class="keyword">if</span> (fileObj) &#123;</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">CompressImg</span>(&#123;</span><br><span class="line">      <span class="attr">file</span>: fileObj,</span><br><span class="line">      <span class="attr">quality</span>: <span class="number">0.6</span>,</span><br><span class="line">      <span class="attr">success</span>: <span class="function">(<span class="params">base64</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> compressImg = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;img&quot;</span>)</span><br><span class="line">        compressImg.<span class="property">src</span> = base64</span><br><span class="line">        <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(compressImg)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> type = fileObj.<span class="property">type</span></span><br><span class="line">  <span class="keyword">const</span> size = fileObj.<span class="property">size</span> / <span class="number">1024</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/07/22/compress/" data-id="clzqt83vy000anps80l6b1apr" data-title="前端图片压缩的算法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/08/12/%E6%96%B0%E9%A2%96%E5%BE%97react/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          react后台正式来袭
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/07/16/webpack/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">webpack的动态加载脚本的方案以及合rollup的treeshaking的对比</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">八月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/08/12/tree/">基于最新的tree图的位置的算法</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/12/%E6%96%B0%E9%A2%96%E5%BE%97react/">react后台正式来袭</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/22/compress/">前端图片压缩的算法</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/16/webpack/">webpack的动态加载脚本的方案以及合rollup的treeshaking的对比</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/11/51/">两个东西分享</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 yuzhongtao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

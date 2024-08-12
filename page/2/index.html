@@ -76,6 +76,226 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-6" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/05/6/" class="article-date">
+  <time class="dt-published" datetime="2024-06-05T08:09:49.110Z" itemprop="datePublished">2024-06-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/06/05/6/">2024年06月 关于面试之中两个很简单的小点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="ts的交叉类型-联合类型，css之中的display-none-以及-visibility：hidden"><a href="#ts的交叉类型-联合类型，css之中的display-none-以及-visibility：hidden" class="headerlink" title="ts的交叉类型&#x2F;联合类型，css之中的display: none 以及 visibility：hidden"></a>ts的交叉类型&#x2F;联合类型，css之中的display: none 以及 visibility：hidden</h3><p>交叉类型：使用<code>&amp;</code>符号作为交叉类型的分隔符，表示这个类型同时包含了这些类型的所有特性。</p>
+<p>联合类型：使用<code>|</code>符号作为联合类型的分隔符。可以是子类型之中的任意一种类型</p>
+<p>display: none 不显示，并且不占用文档的内容区域</p>
+<p>visibility：hidden 不显示，但是保留在文档之中的布局</p>
+<h3 id="关于面试的心里所思所想"><a href="#关于面试的心里所思所想" class="headerlink" title="关于面试的心里所思所想"></a>关于面试的心里所思所想</h3><ul>
+<li><p>在我从2023年10月份学习到现在，这两道小题没说上来，真的是忘了，也是比较疑问一个好歹是20k以上的还问这些？当然说别的没用，我是真的给忘了</p>
+</li>
+<li><p>ts真的有价值，似乎你要是不会，这工作就别干了，但是只要看过源码就稍微能懂一些，ts至少增加整个项目代码量估计50%以上把，在我的眼里他最大的价值依旧只是筛选而已，降低打包效率，出现部署过程之中的意外问题，增加代码量都是他的问题</p>
+</li>
+<li><p>不过我没想到ts在短短不过一年之内到这个地步，从2023年开始学，找了b站上面的2套课程都学完了，竟然连联合类型都给忘了</p>
+</li>
+<li><p>偶尔心里的不甘多一些，面vue源码，不会。现在会了，面试react源码不会，现在会了，面试cicd不会，现在会了，面试第三方的状态库，现在会了，尤其年后回来基本上，谈不上天天啃课程&#x2F;文档。</p>
+</li>
+<li><p>当我自己觉得没问题的时候，又有让你说说进程通信的，cluster集群的？这都是哪儿跟哪啊，前端里面知道这些的都不多啊，多进程打包知道的都没几个啊。。。。</p>
+</li>
+<li><p>面试的时候将js不够用的时候，就用golang&#x2F;c++做一些图片压缩啊？回想起来我有点晕啊，真的用得到啊？webpack&#x2F;rollup都提供了图片压缩的方案，包括无损压缩，犯得着为了一点点几k的提升再找其他的语言？</p>
+</li>
+<li><p>有些时候技术到底是什么？真正的技术人这样吗？还好我不是啊，也许这就注定了99%的项目都会失败的原因了。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/06/05/6/" data-id="clzqt83vr0002nps85e492o6z" data-title="2024年06月 关于面试之中两个很简单的小点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-heap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/17/heap/" class="article-date">
+  <time class="dt-published" datetime="2024-05-17T06:37:28.846Z" itemprop="datePublished">2024-05-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/17/heap/">封装一个最小堆</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="手写封装一个最小的堆"><a href="#手写封装一个最小的堆" class="headerlink" title="手写封装一个最小的堆"></a>手写封装一个最小的堆</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> heap = []</span><br><span class="line"><span class="comment">// 增加新元素</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">push</span>(<span class="params">heap, node</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> index = heap.<span class="property">length</span></span><br><span class="line">  heap.<span class="title function_">push</span>(node)</span><br><span class="line">  <span class="title function_">siftUp</span>(heap, node, index)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 弹出堆的顶部的元素</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">pop</span>(<span class="params">heap</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> first = heap[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">let</span> last = heap.<span class="title function_">at</span>(-<span class="number">1</span>)</span><br><span class="line">  <span class="keyword">if</span> (first !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> last = heap.<span class="title function_">pop</span>()</span><br><span class="line">    <span class="keyword">if</span> (first !== last) &#123;</span><br><span class="line">      heap[<span class="number">0</span>] = last</span><br><span class="line">      <span class="title function_">siftDown</span>(heap, last, <span class="number">0</span>)</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> first</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 返回堆的顶部元素</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">peek</span>(<span class="params">heap</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> first = heap[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">if</span> (first) &#123;</span><br><span class="line">    <span class="keyword">return</span> first</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 向上sift，保证堆的要求</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">siftUp</span>(<span class="params">heap, node, i</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> index = i</span><br><span class="line">  <span class="comment">// 决定是要需要往前面移动</span></span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="comment">// 0 1 2 3 4</span></span><br><span class="line">    <span class="keyword">let</span> parentIndex = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(index / <span class="number">2</span>) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> parent = heap[parentIndex]</span><br><span class="line">    <span class="keyword">if</span> (parent &amp;&amp; <span class="title function_">compare</span>(parent, node) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      heap[index] = parent</span><br><span class="line">      heap[parentIndex] = node</span><br><span class="line">      index = parentIndex</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 向下，保证堆的要求</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">siftDown</span>(<span class="params">heap, node, i</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> index = i</span><br><span class="line">  <span class="keyword">let</span> length = heap.<span class="property">length</span></span><br><span class="line">  <span class="keyword">while</span>(index &lt; length) &#123;</span><br><span class="line">    <span class="keyword">let</span> leftIndex = <span class="number">2</span> * index + <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> rightIndex = leftIndex + <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> left = heap[leftIndex]</span><br><span class="line">    <span class="keyword">let</span> right = heap[rightIndex]</span><br><span class="line">    <span class="keyword">if</span> (left &amp;&amp; <span class="title function_">compare</span>(left, node) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (right &amp;&amp; <span class="title function_">compare</span>(right, left) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// left 小</span></span><br><span class="line">        heap[rightIndex] = node</span><br><span class="line">        heap[index] = right</span><br><span class="line">        index = rightIndex</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// right 小</span></span><br><span class="line">        heap[leftIndex] = node</span><br><span class="line">        heap[index] = left</span><br><span class="line">        index = leftIndex</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (right &amp;&amp; <span class="title function_">compare</span>(right, node) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      heap[rightIndex] = node</span><br><span class="line">      heap[index] = right</span><br><span class="line">      index = rightIndex</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 比较 堆之中的元素的大小</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">compare</span>(<span class="params">node1, node2</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> diff = node1.<span class="property">sortIndex</span> - node2.<span class="property">sortIndex</span></span><br><span class="line">  <span class="keyword">return</span> diff === <span class="number">0</span> ? (node1.<span class="property">index</span> - node2.<span class="property">index</span>) : diff</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> id = <span class="number">1</span></span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">3</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// debugger</span></span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">5</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">6</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">4</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 第2个被称为一个任务</span></span><br><span class="line"><span class="comment">// 数字小的在顶部</span></span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++, <span class="comment">// id的作用是如果sortIndex一样在使用id比较</span></span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">1</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">2</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">push</span>(heap, &#123;</span><br><span class="line">  <span class="attr">id</span>: id++,</span><br><span class="line">  <span class="attr">sortIndex</span>: <span class="number">7</span> <span class="comment">// 索引的数字越小，优先级越高 ，数字越大，优先级越低</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">pop</span>(heap)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(heap)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/05/17/heap/" data-id="clzqt83w3000enps88ugh7053" data-title="封装一个最小堆" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-may" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/14/may/" class="article-date">
+  <time class="dt-published" datetime="2024-05-14T01:54:27.704Z" itemprop="datePublished">2024-05-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/14/may/">两道算法（sorry啦，51回来后一直没更新）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="算法题1-md-就是这道题又把我给卡住了，大爷的"><a href="#算法题1-md-就是这道题又把我给卡住了，大爷的" class="headerlink" title="算法题1:md,就是这道题又把我给卡住了，大爷的"></a>算法题1:md,就是这道题又把我给卡住了，大爷的</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 两个超大的字符串相加</span></span><br><span class="line"><span class="comment">// a: &quot;1112232&quot;</span></span><br><span class="line"><span class="comment">// b: &quot;5439456&quot;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> len = <span class="title class_">Math</span>.<span class="title function_">max</span>(a.<span class="property">length</span>, b.<span class="property">length</span>)</span><br><span class="line">  a = a.<span class="title function_">padStart</span>(len, <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">  b = b.<span class="title function_">padStart</span>(len, <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> carry = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> result = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = len - <span class="number">1</span>; i &gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="keyword">const</span> sum = (+a[i]) + (+b[i]) + carry</span><br><span class="line">    <span class="keyword">const</span> r = sum % <span class="number">10</span> <span class="comment">// 取余数</span></span><br><span class="line">    carry = <span class="title class_">Math</span>.<span class="title function_">floor</span>(sum / <span class="number">10</span>)</span><br><span class="line">    result = r + result</span><br><span class="line">    <span class="keyword">if</span> (i === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (carry &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	    result = carry + result</span><br><span class="line">	  &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="算法题2：限制并发请求的数量"><a href="#算法题2：限制并发请求的数量" class="headerlink" title="算法题2：限制并发请求的数量"></a>算法题2：限制并发请求的数量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">concorRequest</span>(<span class="params">urls, maxNum</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (urls.<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>([])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> result = []</span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">_request</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> i = index</span><br><span class="line">      <span class="keyword">const</span> url = urls[index]</span><br><span class="line">      index++</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> resp = <span class="keyword">await</span> <span class="title function_">fetch</span>(url)</span><br><span class="line">        result[i] = resp</span><br><span class="line">      &#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">        result[i] = err</span><br><span class="line">      &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        count++</span><br><span class="line">        <span class="keyword">if</span> (count === urls.<span class="property">length</span>) &#123;</span><br><span class="line">          <span class="title function_">resolve</span>(result)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; urls.<span class="property">length</span>) &#123;</span><br><span class="line">          <span class="title function_">_request</span>()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="title class_">Math</span>.<span class="title function_">min</span>(urls.<span class="property">length</span>; maxNum); i++) &#123;</span><br><span class="line">      <span class="title function_">_request</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/05/14/may/" data-id="clzqt83w7000knps8anaq52sj" data-title="两道算法（sorry啦，51回来后一直没更新）" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-LRU" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/28/LRU/" class="article-date">
+  <time class="dt-published" datetime="2024-04-28T01:03:18.916Z" itemprop="datePublished">2024-04-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/28/LRU/">LRU算法/最久未使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="LRU-Least-Recently-Used"><a href="#LRU-Least-Recently-Used" class="headerlink" title="LRU Least Recently Used"></a>LRU Least Recently Used</h3><h3 id="最久未使用-缓存的空间是有限的-将最久没有使用的干掉，最新-近使用的放在最前面"><a href="#最久未使用-缓存的空间是有限的-将最久没有使用的干掉，最新-近使用的放在最前面" class="headerlink" title="最久未使用 缓存的空间是有限的 将最久没有使用的干掉，最新&#x2F;近使用的放在最前面"></a>最久未使用 缓存的空间是有限的 将最久没有使用的干掉，最新&#x2F;近使用的放在最前面</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span> &#123;</span><br><span class="line">  #map</span><br><span class="line">  #length</span><br><span class="line">  <span class="comment">// len 存储的最大长度</span></span><br><span class="line">  <span class="title function_">consturctor</span>(<span class="params">len</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.#map = <span class="keyword">new</span> <span class="title class_">Map</span>()</span><br><span class="line">    <span class="variable language_">this</span>.#length = len</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 是否有这块的缓存</span></span><br><span class="line">  <span class="title function_">has</span>(<span class="params">key</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.#map.<span class="title function_">has</span>(key)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">get</span>(<span class="params">key</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.#map.<span class="title function_">has</span>(key)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> value = <span class="variable language_">this</span>.#map.<span class="title function_">get</span>(key)</span><br><span class="line">      <span class="variable language_">this</span>.#map.<span class="title function_">delete</span>(key)</span><br><span class="line">      <span class="variable language_">this</span>.#map.<span class="title function_">set</span>(key, value)</span><br><span class="line">      <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="title function_">set</span>(<span class="params">key, value</span>) &#123;</span><br><span class="line">    <span class="comment">// 新增/修改</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.#map.<span class="title function_">has</span>(key)) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.#map.<span class="title function_">delete</span>(key)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.#map.<span class="title function_">set</span>(key, value)</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.#map.<span class="property">size</span> &gt; <span class="variable language_">this</span>.#length) &#123;</span><br><span class="line">      <span class="comment">// 删除掉第一个</span></span><br><span class="line">      <span class="variable language_">this</span>.#map.<span class="title function_">delete</span>(<span class="variable language_">this</span>.#map.<span class="title function_">keys</span>().<span class="title function_">next</span>().<span class="property">value</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/04/28/LRU/" data-id="clzqt83vs0003nps8fqr10o3w" data-title="LRU算法/最久未使用" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-arrayToTree" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/22/arrayToTree/" class="article-date">
+  <time class="dt-published" datetime="2024-04-22T03:55:03.650Z" itemprop="datePublished">2024-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/04/22/arrayToTree/">平级数组转换为树形数组的方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="arrayToTree"><a href="#arrayToTree" class="headerlink" title="arrayToTree"></a>arrayToTree</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">arrayToTree</span>(<span class="params">items</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> map = &#123;&#125;</span><br><span class="line">  items.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    map[item.<span class="property">id</span>] = &#123;</span><br><span class="line">      ...item,</span><br><span class="line">      <span class="attr">children</span>: []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  items.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> parent = map[item.<span class="property">parentId</span>]</span><br><span class="line">    <span class="keyword">if</span> (parent) &#123;</span><br><span class="line">      parent.<span class="property">children</span>.<span class="title function_">push</span>(map[item.<span class="property">id</span>])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> res = []</span><br><span class="line">  items.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!item.<span class="property">parentId</span>) &#123;</span><br><span class="line">      res.<span class="title function_">push</span>(map[item.<span class="property">id</span>]);  </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> items = [  </span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="string">&#x27;节点1&#x27;</span>, <span class="attr">parentId</span>: <span class="literal">null</span> &#125;,  </span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">name</span>: <span class="string">&#x27;节点1.1&#x27;</span>, <span class="attr">parentId</span>: <span class="number">3</span> &#125;,  </span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="number">3</span>, <span class="attr">name</span>: <span class="string">&#x27;节点1.2&#x27;</span>, <span class="attr">parentId</span>: <span class="number">1</span> &#125;,  </span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="number">4</span>, <span class="attr">name</span>: <span class="string">&#x27;节点2&#x27;</span>, <span class="attr">parentId</span>: <span class="number">3</span> &#125;,  </span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="number">5</span>, <span class="attr">name</span>: <span class="string">&#x27;节点2.1&#x27;</span>, <span class="attr">parentId</span>: <span class="number">4</span> &#125;,  </span><br><span class="line">    &#123; <span class="attr">id</span>: <span class="number">6</span>, <span class="attr">name</span>: <span class="string">&#x27;节点2.2&#x27;</span>, <span class="attr">parentId</span>: <span class="number">4</span> &#125;,  </span><br><span class="line">];  </span><br><span class="line"><span class="title function_">arrayToTree</span>(items)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/04/22/arrayToTree/" data-id="clzqt83vv0006nps8gchva26i" data-title="平级数组转换为树形数组的方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-promise" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/22/promise/" class="article-date">
@@ -104,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/22/promise/" data-id="cly56h5e7000k3os8c8ia5s41" data-title="promise的几个静态方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/22/promise/" data-id="clzqt83w8000lnps88y78hpjq" data-title="promise的几个静态方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -146,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/19/bind/" data-id="cly56h5dx00083os8cbt2ct3p" data-title="手写bind、手写深拷贝" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/19/bind/" data-id="clzqt83vx0008nps8ffg61gpg" data-title="手写bind、手写深拷贝" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -188,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/14/README/" data-id="cly56h5ds00043os8fa9zc3s3" data-title="关于react的工程化配置，webpack版本，亮点如下" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/14/README/" data-id="clzqt83vt0004nps8brb3g6r6" data-title="关于react的工程化配置，webpack版本，亮点如下" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -228,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/12/layouteffect/" data-id="cly56h5e5000i3os86p9zcbkx" data-title="手写 useEffect 和 useLayoutEffect" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/12/layouteffect/" data-id="clzqt83w6000jnps88j5jdbz2" data-title="手写 useEffect 和 useLayoutEffect" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -268,227 +488,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/11/useState/" data-id="cly56h5e8000n3os82rgs2wo6" data-title="自定义react-hooks之手写useState" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-event" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/10/event/" class="article-date">
-  <time class="dt-published" datetime="2024-04-10T09:28:15.323Z" itemprop="datePublished">2024-04-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/10/event/">react事件合成机制</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="react的事件合成机制-简易版本"><a href="#react的事件合成机制-简易版本" class="headerlink" title="react的事件合成机制(简易版本)"></a>react的事件合成机制(简易版本)</h3><p>react的合成事件，所有的事件都会绑定在根容器root之中，会最开始捕获以及最后的冒泡</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;parent&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;child&quot;</span>&gt;</span>apple<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  	<span class="keyword">const</span> <span class="title function_">parentBubble</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;react-父元素冒泡-1&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">parentCapture</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;react-父元素捕获+1&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">childBubble</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;react-子元素冒泡-2&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">childCapture</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;react-子元素捕获+2&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> parent = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;parent&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> child = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;child&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    parent.<span class="property">onClick</span> = parentBubble</span></span><br><span class="line"><span class="language-javascript">    parent.<span class="property">onClickCapture</span> = parentCapture</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    child.<span class="property">onClick</span> = childBubble</span></span><br><span class="line"><span class="language-javascript">    child.<span class="property">onClickCapture</span> = childCapture</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    root.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">(<span class="params">evt</span>) =&gt;</span> <span class="title function_">compoundEvent</span>(evt, <span class="literal">true</span>), <span class="literal">true</span>)</span></span><br><span class="line"><span class="language-javascript">    root.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">(<span class="params">evt</span>) =&gt;</span> <span class="title function_">compoundEvent</span>(evt, <span class="literal">false</span>), <span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">compoundEvent</span> = (<span class="params">evt, isCapture</span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> paths = []</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">let</span> currentTarget = evt.<span class="property">target</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">while</span> (currentTarget) &#123;</span></span><br><span class="line"><span class="language-javascript">        paths.<span class="title function_">push</span>(currentTarget)</span></span><br><span class="line"><span class="language-javascript">        currentTarget = currentTarget.<span class="property">parentNode</span></span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (isCapture) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">for</span> (<span class="keyword">let</span> i = paths.<span class="property">length</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> handler = paths[i].<span class="property">onClickCapture</span></span></span><br><span class="line"><span class="language-javascript">          handler &amp;&amp; <span class="title function_">handler</span>()</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">      &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; paths.<span class="property">length</span>; i++) &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">let</span> handler = paths[i].<span class="property">onClick</span></span></span><br><span class="line"><span class="language-javascript">          handler &amp;&amp; <span class="title function_">handler</span>()</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    parent.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;父亲-原生事件-捕获&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="literal">true</span>)</span></span><br><span class="line"><span class="language-javascript">    parent.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;父亲-原生事件-冒泡&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">    child.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;儿子-原生事件-捕获&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="literal">true</span>)</span></span><br><span class="line"><span class="language-javascript">    child.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;儿子-原生事件-冒泡&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="literal">false</span>)</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/10/event/" data-id="cly56h5dz000a3os86rnfb158" data-title="react事件合成机制" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-treeDepth" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/10/treeDepth/" class="article-date">
-  <time class="dt-published" datetime="2024-04-10T02:31:50.557Z" itemprop="datePublished">2024-04-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/10/treeDepth/">求解树的最大深度</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="求解树的最大深度"><a href="#求解树的最大深度" class="headerlink" title="求解树的最大深度"></a>求解树的最大深度</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">maxDepth</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (root === <span class="literal">null</span>) &#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> queue = [root]</span><br><span class="line">  <span class="keyword">let</span> depth = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span>(queue.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> levelSize = queue.<span class="property">length</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; levelSize; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> node = queue.<span class="title function_">shift</span>()</span><br><span class="line">      <span class="keyword">if</span> (node.<span class="property">children</span> &amp;&amp; node.<span class="property">children</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        queue.<span class="title function_">push</span>(...node.<span class="property">children</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    depth++</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> depth</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试数据</span></span><br><span class="line"><span class="keyword">let</span> tree = &#123;  </span><br><span class="line">  <span class="attr">value</span>: <span class="number">1</span>,  </span><br><span class="line">  <span class="attr">children</span>: [  </span><br><span class="line">    &#123;  </span><br><span class="line">      <span class="attr">value</span>: <span class="number">2</span>,  </span><br><span class="line">      <span class="attr">children</span>: [  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">4</span>,  </span><br><span class="line">          <span class="attr">children</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">value</span>: <span class="number">100</span>,</span><br><span class="line">              <span class="attr">children</span>: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]  </span><br><span class="line">        &#125;,  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">5</span>,  </span><br><span class="line">          <span class="attr">children</span>: []  </span><br><span class="line">        &#125;  </span><br><span class="line">      ]  </span><br><span class="line">    &#125;,  </span><br><span class="line">    &#123;  </span><br><span class="line">      <span class="attr">value</span>: <span class="number">3</span>,  </span><br><span class="line">      <span class="attr">children</span>: [  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">6</span>,  </span><br><span class="line">          <span class="attr">children</span>: []  </span><br><span class="line">        &#125;  </span><br><span class="line">      ]  </span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;  </span><br><span class="line">      <span class="attr">value</span>: <span class="number">77</span>,  </span><br><span class="line">      <span class="attr">children</span>: [  </span><br><span class="line">        &#123;  </span><br><span class="line">          <span class="attr">value</span>: <span class="number">88</span>,  </span><br><span class="line">          <span class="attr">children</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">value</span>: <span class="string">&#x27;888&#x27;</span>,</span><br><span class="line">              <span class="attr">children</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                  <span class="attr">value</span>: <span class="number">444</span>,</span><br><span class="line">                  <span class="attr">children</span>: []</span><br><span class="line">                &#125;</span><br><span class="line">              ]</span><br><span class="line">            &#125;</span><br><span class="line">          ]  </span><br><span class="line">        &#125;  </span><br><span class="line">      ]  </span><br><span class="line">    &#125;  </span><br><span class="line">  ]  </span><br><span class="line">&#125;;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/10/treeDepth/" data-id="cly56h5e8000m3os86mzyb9ic" data-title="求解树的最大深度" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-func" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/07/func/" class="article-date">
-  <time class="dt-published" datetime="2024-04-07T01:20:27.998Z" itemprop="datePublished">2024-04-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/04/07/func/">函数柯里化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="函数柯里化：我去，名字贼高端。。。"><a href="#函数柯里化：我去，名字贼高端。。。" class="headerlink" title="函数柯里化：我去，名字贼高端。。。"></a>函数柯里化：我去，名字贼高端。。。</h3><p>vue3的生命周期函数不就是函数柯里化吗？？？</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	函数柯里化：是把接受多个参数的函数变换为接受一个单一参数的函数，并且返回接受余下参数而且返回结果的新函数的技术</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sum1</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sum1</span>(<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将多个参数的函数转换为单个参数的函数</span></span><br><span class="line"><span class="comment">// sum(1)(2)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sum2</span>(<span class="params">a</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">b</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> a + b</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sum2</span>(<span class="number">1</span>)(<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// --------------</span></span><br><span class="line"><span class="comment">// 经典面试题</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sum3</span>(<span class="params">a, b, c, d, e</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> a + b + c + d + e</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 改写sum3实现：参数传递5个就可以实现累加</span></span><br><span class="line"><span class="comment">// sum3(1)(2)(3)(4)(5)</span></span><br><span class="line"><span class="comment">// sum3(1)(2, 3)(4, 5)</span></span><br><span class="line"><span class="comment">// sum3(1)(2, 3, 4)(5)</span></span><br><span class="line"><span class="comment">// sum3(1, 2, 3)(4, 5)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 长度到5累加，没到5就会返回函数</span></span><br><span class="line"><span class="keyword">let</span> nums = []</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sum4</span>(<span class="params">...args</span>) &#123;</span><br><span class="line">	nums.<span class="title function_">push</span>(...args)</span><br><span class="line">	<span class="keyword">if</span> (nums.<span class="property">length</span> &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">		<span class="keyword">const</span> res = nums.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">5</span>).<span class="title function_">reduce</span>(<span class="function">(<span class="params">p, c</span>) =&gt;</span> p + c, <span class="number">0</span>)</span><br><span class="line">		nums = [] <span class="comment">// 累加之后清空数组</span></span><br><span class="line">		<span class="keyword">return</span> res</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> sum4</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 实际应用</span></span><br><span class="line"><span class="comment">// function isUndefined(thing) &#123;</span></span><br><span class="line"><span class="comment">// 	return typeof thing === &#x27;undefined&#x27;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// function isNumber(thing) &#123;</span></span><br><span class="line"><span class="comment">// 	return typeof thing === &#x27;number&#x27;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// function isString(thing) &#123;</span></span><br><span class="line"><span class="comment">// 	return typeof thing === &#x27;string&#x27;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// function isFunction(thing) &#123;</span></span><br><span class="line"><span class="comment">// 	return typeof thing === &#x27;function&#x27;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> typeOfTest = <span class="keyword">function</span>(<span class="params">type</span>) &#123;</span><br><span class="line">	<span class="comment">// 1- 复用类型判断逻辑</span></span><br><span class="line">	<span class="keyword">function</span> <span class="title function_">whichType</span>(<span class="params">thing</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">typeof</span> thing === type</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> whichType</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isUndefinedK = <span class="title function_">typeOfTest</span>(<span class="string">&#x27;undefined&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/04/07/func/" data-id="cly56h5e1000b3os8aqfyg64o" data-title="函数柯里化" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-238910" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/25/238910/" class="article-date">
-  <time class="dt-published" datetime="2024-03-25T06:44:38.392Z" itemprop="datePublished">2024-03-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/25/238910/">模拟超时时间&amp;最大的请求次数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="模拟超时时间"><a href="#模拟超时时间" class="headerlink" title="模拟超时时间"></a>模拟超时时间</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">overTime</span>(<span class="params">url, time</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">let</span> timerId = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">reject</span>(<span class="string">&#x27;请求超时&#x27;</span>)</span><br><span class="line">		&#125;, time)</span><br><span class="line">		<span class="title function_">fetch</span>(url).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> res.<span class="title function_">json</span>())</span><br><span class="line">			.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">				<span class="built_in">clearTimeout</span>(timerId)</span><br><span class="line">				<span class="title function_">resolve</span>(res)</span><br><span class="line">			&#125;)</span><br><span class="line">			.<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">			<span class="built_in">clearTimeout</span>(timerId)</span><br><span class="line">			<span class="title function_">reject</span>(err)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="模拟最大的请求次数"><a href="#模拟最大的请求次数" class="headerlink" title="模拟最大的请求次数"></a>模拟最大的请求次数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">maxReq</span>(<span class="params">url, maxCount</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="title function_">fetch</span>(url)</span><br><span class="line">			.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> res.<span class="title function_">json</span>())</span><br><span class="line">			.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">				<span class="title function_">resolve</span>(res)</span><br><span class="line">			&#125;)</span><br><span class="line">			.<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">				maxCount &lt;= <span class="number">0</span> ? <span class="title function_">reject</span>(err) : <span class="title function_">maxReq</span>(url, maxCount - <span class="number">1</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> <span class="title function_">resolve</span>(res)).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> <span class="title function_">reject</span>(err))</span><br><span class="line">			&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="后台请求地址的代码"><a href="#后台请求地址的代码" class="headerlink" title="后台请求地址的代码"></a>后台请求地址的代码</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>)</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">&quot;cors&quot;</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>()</span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>())</span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&quot;/apple&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">		res.<span class="title function_">json</span>(&#123;</span><br><span class="line">			<span class="attr">name</span>: <span class="string">&#x27;apple&#x27;</span>,</span><br><span class="line">			<span class="attr">age</span>: <span class="number">11</span></span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;, <span class="number">3000</span>)</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">9999</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;success&quot;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/25/238910/" data-id="cly56h5dh00003os8gpkne02x" data-title="模拟超时时间&amp;最大的请求次数" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hand_promise" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/24/hand_promise/" class="article-date">
-  <time class="dt-published" datetime="2024-03-24T13:46:41.581Z" itemprop="datePublished">2024-03-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/24/hand_promise/">实现简易的手写的promise</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="1-实现简易的手写的promise"><a href="#1-实现简易的手写的promise" class="headerlink" title="1- 实现简易的手写的promise"></a>1- 实现简易的手写的promise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyPromise</span> &#123;</span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params">executor</span>) &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">state</span> = <span class="string">&#x27;pending&#x27;</span></span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">value</span> = <span class="literal">null</span></span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">error</span> = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">onResolvedList</span> = []</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">onRejectedList</span> = []</span><br><span class="line">		<span class="keyword">const</span> <span class="title function_">resolve</span> = (<span class="params">val</span>) =&gt; &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">				<span class="variable language_">this</span>.<span class="property">value</span> = val</span><br><span class="line">				<span class="variable language_">this</span>.<span class="property">state</span> = <span class="string">&#x27;fulfilled&#x27;</span></span><br><span class="line">				<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">onResolvedList</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="variable language_">this</span>.<span class="property">onResolvedList</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="title function_">item</span>())</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">const</span> <span class="title function_">reject</span> = (<span class="params">err</span>) =&gt; &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">				<span class="variable language_">this</span>.<span class="property">error</span> = error</span><br><span class="line">				<span class="variable language_">this</span>.<span class="property">state</span> = <span class="string">&#x27;rejected&#x27;</span></span><br><span class="line">				<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">onRejectedList</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="variable language_">this</span>.<span class="property">onRejectedList</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> <span class="title function_">item</span>())</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="title function_">executor</span>(resolve, reject)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="title function_">then</span>(<span class="params">onFulfilled, onRejected</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="string">&#x27;fulfilled&#x27;</span>) &#123;</span><br><span class="line">			<span class="title function_">onFulfilled</span>(<span class="variable language_">this</span>.<span class="property">value</span>)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="string">&#x27;rejected&#x27;</span>) &#123;</span><br><span class="line">			<span class="title function_">onRejected</span>(<span class="variable language_">this</span>.<span class="property">error</span>)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">onResolvedList</span>.<span class="title function_">push</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">				<span class="title function_">onFulfilled</span>(<span class="variable language_">this</span>.<span class="property">value</span>)</span><br><span class="line">			&#125;)</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">onRejectedList</span>.<span class="title function_">push</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">				<span class="title function_">onRejected</span>(<span class="variable language_">this</span>.<span class="property">error</span>)</span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pp = <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="comment">// 情况1- 直接进行resolve</span></span><br><span class="line">	<span class="title function_">resolve</span>(<span class="number">5667</span>)</span><br><span class="line">	<span class="comment">// 情况2- 异步的方案</span></span><br><span class="line">	<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">		<span class="title function_">resolve</span>(<span class="number">5667</span>)</span><br><span class="line">	&#125;, <span class="number">3000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">pp.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;&#125;, <span class="function"><span class="params">err</span> =&gt;</span> &#123;&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="实现静态方法Promise-all-的-手写"><a href="#实现静态方法Promise-all-的-手写" class="headerlink" title="实现静态方法Promise.all 的 手写"></a>实现静态方法Promise.all 的 手写</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// promises 是一个数组</span></span><br><span class="line"><span class="title class_">MyPromise</span>.<span class="property">all</span> = <span class="keyword">function</span>(<span class="params">promises</span>) &#123;</span><br><span class="line">	<span class="keyword">let</span> array = []</span><br><span class="line">	<span class="keyword">let</span> index = <span class="number">0</span></span><br><span class="line">	<span class="keyword">const</span> <span class="title function_">processPromise</span> = (<span class="params">id, res, resolve</span>) =&gt; &#123;</span><br><span class="line">		array[id] = res</span><br><span class="line">		index++</span><br><span class="line">		<span class="keyword">if</span> (index === promises.<span class="property">length</span>) &#123;</span><br><span class="line">			<span class="title function_">resolve</span>(array)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">		promises.<span class="title function_">forEach</span>(<span class="function">(<span class="params">promise, id</span>) =&gt;</span> &#123;</span><br><span class="line">			promise.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">				<span class="title function_">processPromise</span>(id, res, resolve)</span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/03/24/hand_promise/" data-id="cly56h5e1000c3os8bq6zdjx4" data-title="实现简易的手写的promise" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/04/11/useState/" data-id="clzqt83wb000qnps89mbi902g" data-title="自定义react-hooks之手写useState" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -523,7 +523,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">八月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
     </div>
   </div>
 
@@ -536,23 +536,23 @@
       <ul>
         
           <li>
-            <a href="/2024/07/03/51/">两个东西分享</a>
+            <a href="/2024/08/12/tree/">基于最新的tree图的位置的算法</a>
           </li>
         
           <li>
-            <a href="/2024/06/27/seven/">面试点的记录和总结</a>
+            <a href="/2024/08/12/%E6%96%B0%E9%A2%96%E5%BE%97react/">react后台正式来袭</a>
           </li>
         
           <li>
-            <a href="/2024/06/13/base/">一些基础的知识</a>
+            <a href="/2024/07/22/compress/">前端图片压缩的算法</a>
           </li>
         
           <li>
-            <a href="/2024/06/13/info1/">新发布的自动化部署教程</a>
+            <a href="/2024/07/16/webpack/">webpack的动态加载脚本的方案以及合rollup的treeshaking的对比</a>
           </li>
         
           <li>
-            <a href="/2024/06/07/info/">关于一些很琐碎的知识点</a>
+            <a href="/2024/07/11/51/">两个东西分享</a>
           </li>
         
       </ul>
