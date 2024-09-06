@@ -76,6 +76,91 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-yield" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/06/yield/" class="article-date">
+  <time class="dt-published" datetime="2024-09-06T01:27:42.289Z" itemprop="datePublished">2024-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/09/06/yield/">顺序执行生成器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="按照顺序递归执行生成器"><a href="#按照顺序递归执行生成器" class="headerlink" title="按照顺序递归执行生成器"></a>按照顺序递归执行生成器</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> * <span class="title function_">gen2</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">111</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">resolve</span>(<span class="number">222</span>)</span><br><span class="line">    &#125;, <span class="number">2000</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">333</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> * <span class="title function_">gen1</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">11</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">resolve</span>(<span class="number">22</span>)</span><br><span class="line">    &#125;, <span class="number">2000</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">yield</span> <span class="title function_">gen2</span>()</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">33</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> * <span class="title function_">gen</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">resolve</span>(<span class="number">2</span>)</span><br><span class="line">    &#125;, <span class="number">2000</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">yield</span> <span class="title function_">gen1</span>()</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">runMainTask</span>(<span class="params">gen, _cb</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> it = <span class="keyword">typeof</span> gen === <span class="string">&#x27;function&#x27;</span> ? <span class="title function_">gen</span>() : gen</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">_next</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;done, <span class="attr">value</span>: effect&#125; = it.<span class="title function_">next</span>()</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(effect)</span><br><span class="line">    <span class="keyword">if</span> (!done) &#123;</span><br><span class="line">      <span class="keyword">if</span> (effect <span class="keyword">instanceof</span> <span class="title class_">Promise</span>) &#123;</span><br><span class="line">        effect.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">          <span class="title function_">_next</span>()</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> effect[<span class="title class_">Symbol</span>.<span class="property">iterator</span>] === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="title function_">runMainTask</span>(effect, _next)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title function_">_next</span>()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (_cb) &#123;</span><br><span class="line">        <span class="title function_">_cb</span>()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">_next</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">runMainTask</span>(gen)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/09/06/yield/" data-id="cm0q1edh6000t9bs8gmja1kvq" data-title="顺序执行生成器" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-cookie" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/08/30/cookie/" class="article-date">
+  <time class="dt-published" datetime="2024-08-30T02:46:16.895Z" itemprop="datePublished">2024-08-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/08/30/cookie/">关于cookie的说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="cookie一直被忽略的东西"><a href="#cookie一直被忽略的东西" class="headerlink" title="cookie一直被忽略的东西"></a>cookie一直被忽略的东西</h3><h4 id="Cookie的携带条件"><a href="#Cookie的携带条件" class="headerlink" title="Cookie的携带条件"></a>Cookie的携带条件</h4><ol>
+<li><strong>域名匹配</strong>：Cookie只会在请求头中的Host字段与Cookie的域名属性相匹配时，才会被携带到服务器上。这意味着，如果Cookie的域名设置为<code>example.com</code>，那么来自<code>www.example.com</code>、<code>blog.example.com</code>等子域名的请求都会携带该Cookie。</li>
+<li><strong>协议匹配</strong>：除了域名匹配外，Cookie的携带还受到协议（HTTP或HTTPS）的影响。如果Cookie被设置了Secure属性，则它只能在HTTPS协议下被发送。这意味着，如果请求是通过HTTP协议发起的，即使域名匹配，带有Secure属性的Cookie也不会被携带。</li>
+<li><strong>路径匹配</strong>：Cookie还有一个路径（Path）属性，它指定了哪些URL路径可以发送Cookie。只有请求资源的路径与Cookie的路径属性相匹配时，Cookie才会被携带。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/api/set-cookie&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;  </span><br><span class="line">  res.<span class="title function_">cookie</span>(<span class="string">&#x27;username&#x27;</span>, <span class="string">&#x27;JohnDoe&#x27;</span>, &#123;  </span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/api&#x27;</span>, <span class="comment">// 仅当请求路径以/api开头时，浏览器才会发送此Cookie  </span></span><br><span class="line">    <span class="attr">secure</span>: <span class="literal">true</span>, <span class="comment">// 仅当请求是HTTPS时，浏览器才会发送此Cookie  </span></span><br><span class="line">    <span class="attr">httpOnly</span>: <span class="literal">true</span>, <span class="comment">// 增加安全性，防止通过客户端脚本访问Cookie  </span></span><br><span class="line">    <span class="attr">maxAge</span>: <span class="number">86400000</span> <span class="comment">// 设置Cookie的有效期，这里为1天  </span></span><br><span class="line">  &#125;);  </span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;Cookie has been set for /api path only and over HTTPS.&#x27;</span>);  </span><br><span class="line">&#125;);  </span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.wenchangstreet.com/2024/08/30/cookie/" data-id="cm0q1edgj000b9bs8eculdzw2" data-title="关于cookie的说明" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-tree" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/08/12/tree/" class="article-date">
@@ -112,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/08/12/tree/" data-id="clzqtawya000ohus83yf523hc" data-title="基于最新的tree图的位置的算法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/08/12/tree/" data-id="cm0q1edgw000p9bs84ee7a3sq" data-title="基于最新的tree图的位置的算法" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -175,7 +260,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/08/12/%E6%96%B0%E9%A2%96%E5%BE%97react/" data-id="clzqtawyj000zhus88oisatj0" data-title="react后台正式来袭" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/08/12/%E6%96%B0%E9%A2%96%E5%BE%97react/" data-id="cm0q1edhc00119bs8d54k350n" data-title="react后台正式来袭" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -215,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/07/22/compress/" data-id="clzqtawxp000ahus8huabhyim" data-title="前端图片压缩的算法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/07/22/compress/" data-id="cm0q1edgh000a9bs8cdgzd4wg" data-title="前端图片压缩的算法" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -259,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/07/16/webpack/" data-id="clzqtawye000rhus8cq7z462m" data-title="webpack的动态加载脚本的方案以及合rollup的treeshaking的对比" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/07/16/webpack/" data-id="cm0q1edh5000s9bs86zrpahxp" data-title="webpack的动态加载脚本的方案以及合rollup的treeshaking的对比" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -310,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/07/11/51/" data-id="clzqtawxg0001hus8fldr2jad" data-title="两个东西分享" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/07/11/51/" data-id="cm0q1edg600019bs820bp0o7t" data-title="两个东西分享" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -351,7 +436,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/07/11/register/" data-id="clzqtawy8000mhus873l62cew" data-title="vue 之中异步注册组件的方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/07/11/register/" data-id="cm0q1edgv000n9bs85v44fm3u" data-title="vue 之中异步注册组件的方法" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -414,7 +499,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/06/27/seven/" data-id="clzqtawy9000nhus84trmbmu6" data-title="面试点的记录和总结" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/06/27/seven/" data-id="cm0q1edgw000o9bs8gvzeerid" data-title="面试点的记录和总结" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -463,126 +548,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/06/13/base/" data-id="clzqtawxn0007hus85ljvgba9" data-title="一些基础的知识" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-info1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/13/info1/" class="article-date">
-  <time class="dt-published" datetime="2024-06-13T08:08:29.890Z" itemprop="datePublished">2024-06-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/13/info1/">新发布的自动化部署教程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="1-新发布的自动化部署教程"><a href="#1-新发布的自动化部署教程" class="headerlink" title="1.新发布的自动化部署教程"></a>1.新发布的自动化部署教程</h1><p>目前基于最新的docker gitlab gitlab-runner centos9来录制的全新的自动化部署教程正式上线了，希望大家多多关注，在此谢过了</p>
-<p>链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14i421i7q1/?vd_source=6ccda088f124d39971be265ef3ed268f">https://www.bilibili.com/video/BV14i421i7q1/?vd_source=6ccda088f124d39971be265ef3ed268f</a></p>
-<img src="/2024/06/13/info1/01.png" class="" title="info">
-
-
-
-<h1 id="2-面试还问了浮动"><a href="#2-面试还问了浮动" class="headerlink" title="2.面试还问了浮动"></a>2.面试还问了浮动</h1><ul>
-<li>面试问了浮动，我真的给忘了，这应该是学习前端最初始的内容，怎么还有人考，关键是我忘了</li>
-<li>问了阻塞js执行的方法，有点晕，阻塞，不都是同步才能阻塞吗？</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/06/13/info1/" data-id="clzqtawy5000ihus80tzl43i5" data-title="新发布的自动化部署教程" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-info" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/06/07/info/" class="article-date">
-  <time class="dt-published" datetime="2024-06-07T01:09:05.435Z" itemprop="datePublished">2024-06-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/06/07/info/">关于一些很琐碎的知识点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>一些很琐碎的知识点，晚上回想了一下，答错了好多，但这些实在是太细了，一不注意，就很容易忘记，还是那句话，没见过就不好回答啊</p>
-<h3 id="知识点1"><a href="#知识点1" class="headerlink" title="知识点1"></a>知识点1</h3><ul>
-<li>关于在vue的template之中使用v-if的效果 在最顶层的template使用的v-if是没有效果的，内部的template是可以使用的</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-if=&quot;flag1&quot;&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">        &lt;template v-if=&quot;flag1&quot;&gt;</span><br><span class="line">			&lt;h2&gt;</span><br><span class="line">            	apple    </span><br><span class="line">    		&lt;/h2&gt;</span><br><span class="line">		&lt;/template&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ref &#125; from &quot;vue&quot;</span><br><span class="line">const flag1 = ref(false)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="知识点2"><a href="#知识点2" class="headerlink" title="知识点2"></a>知识点2</h3><p>几种定位的方式</p>
-<ul>
-<li>relative 相对定位</li>
-<li>absolute 绝对定位</li>
-<li>static 正常的布局</li>
-<li>fixed 固定定位 </li>
-<li>sticky 粘性定位</li>
-</ul>
-<h3 id="知识点3"><a href="#知识点3" class="headerlink" title="知识点3"></a>知识点3</h3><ul>
-<li><p>space-between: 在每行上均匀分配弹性元素。相邻元素间距离相同。每行第一个元素与行首对齐，每行最后一个元素与行尾对齐。</p>
-</li>
-<li><p>space-around: 在每行上均匀分配弹性元素。相邻元素间距离相同。每行第一个元素到行首的距离和每行最后一个元素到行尾的距离将会是相邻元素之间距离的一半。</p>
-</li>
-<li><p>space-evenly: flex 项都沿着主轴均匀分布在指定的对齐容器中。相邻 flex 项之间的间距，主轴起始位置到第一个 flex 项的间距，主轴结束位置到最后一个 flex 项的间距，都完全一样。</p>
-</li>
-</ul>
-<h3 id="知识点4"><a href="#知识点4" class="headerlink" title="知识点4"></a>知识点4</h3><ul>
-<li>昨晚想到的微前端的几种有意思的东西<ul>
-<li>多端口的话就需要开启跨域支持啊</li>
-<li>public-path.js文件需要放置在首位</li>
-<li>对于需要鉴权的页面，是采用多端口还是单端口使用子路径啊？一会自己试一下</li>
-</ul>
-</li>
-</ul>
-<h3 id="知识点5"><a href="#知识点5" class="headerlink" title="知识点5"></a>知识点5</h3><ul>
-<li>grid布局，最近发现grid布局问了好多次，grid是二维布局，基于行和列进行布局，而flex是一维布局，只会基于主轴啊</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.wenchangstreet.com/2024/06/07/info/" data-id="clzqtawy4000hhus82cv3bglc" data-title="关于一些很琐碎的知识点" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://www.wenchangstreet.com/2024/06/13/base/" data-id="cm0q1edgd00079bs82od5ffxe" data-title="一些基础的知识" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -617,7 +583,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">八月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">八月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
     </div>
   </div>
 
@@ -630,6 +596,14 @@
       <ul>
         
           <li>
+            <a href="/2024/09/06/yield/">顺序执行生成器</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/30/cookie/">关于cookie的说明</a>
+          </li>
+        
+          <li>
             <a href="/2024/08/12/tree/">基于最新的tree图的位置的算法</a>
           </li>
         
@@ -639,14 +613,6 @@
         
           <li>
             <a href="/2024/07/22/compress/">前端图片压缩的算法</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/16/webpack/">webpack的动态加载脚本的方案以及合rollup的treeshaking的对比</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/11/51/">两个东西分享</a>
           </li>
         
       </ul>
